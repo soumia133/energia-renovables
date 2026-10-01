@@ -1,0 +1,1157 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Energías Renovables</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+
+    /* =========================
+       IMÁGENES DE LAS TARJETAS
+       ========================= */
+
+    .box-1 {
+      --img: url('imagenPaginaEnergiaRenovable/placas-solares-campo.jpg');
+    }
+
+    .box-2 {
+      --img: url('imagenPaginaEnergiaRenovable/colectores-energia-solar.jpg');
+    }
+
+    .box-3 {
+      --img: url('imagenPaginaEnergiaRenovable/casa-pasiva.jpg');
+    }
+
+    .box-4 {
+      --img: url('imagenPaginaEnergiaRenovable/tipos-energias-renovables.jpg');
+    }
+
+
+    /* =========================
+       TARJETAS
+       ========================= */
+
+    .box {
+      background-image: var(--img);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      position: relative;
+      overflow: hidden;
+
+      border-radius: 0.75rem;
+
+      transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+    }
+
+
+    .box:hover {
+      transform: scale(1.03);
+      z-index: 10;
+    }
+
+
+    /* Texto que aparece al pasar el ratón */
+
+    .box::after {
+      content: attr(data-text);
+
+      position: absolute;
+
+      font-size: 1rem;
+      color: white;
+
+      background: rgba(0, 0, 0, 0.5);
+
+      border-radius: 0.5rem;
+
+      bottom: 1rem;
+      left: 50%;
+
+      transform: translateX(-50%) translateY(20px);
+
+      opacity: 0;
+
+      padding: 0.5rem 1rem;
+
+      transition:
+        opacity 0.4s,
+        transform 0.4s;
+
+      letter-spacing: 1px;
+    }
+
+
+    .box:hover::after {
+      opacity: 1;
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+    }
+
+
+    /* Efecto gris en las otras tarjetas */
+
+    .container:hover .box {
+      filter:
+        grayscale(80%)
+        brightness(60%);
+    }
+
+
+    .container .box:hover {
+      filter:
+        grayscale(0%)
+        brightness(100%);
+    }
+
+
+    /* =========================
+       MENÚ
+       ========================= */
+
+    #submenu {
+      min-width: 250px;
+    }
+
+
+    /* =========================
+       MÓVIL
+       ========================= */
+
+    @media (max-width: 767px) {
+
+      #submenu {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body class="bg-white">
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="fixed top-0 left-0 w-full z-50 bg-gray-300 shadow-md">
+
+  <div class="flex flex-wrap items-center justify-between px-6 py-4">
+
+
+    <!-- LOGO -->
+
+    <a href="Pagina-principal.html">
+
+      <img
+        src="logo3.png"
+        alt="Logo"
+        class="w-[130px] ml-0 md:ml-[80px]"
+      >
+
+    </a>
+
+
+    <!-- BOTÓN MENÚ MÓVIL -->
+
+    <button
+      id="mobileMenuBtn"
+      type="button"
+      class="md:hidden text-gray-600 text-3xl focus:outline-none"
+      aria-label="Abrir menú"
+    >
+
+      ☰
+
+    </button>
+
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+
+    <nav
+      id="navMenu"
+      class="hidden md:block w-full md:w-auto"
+    >
+
+      <ul
+        class="flex flex-col md:flex-row gap-4 md:gap-6 items-center mt-4 md:mt-0"
+      >
+
+
+        <!-- INICIO -->
+
+        <li>
+
+          <a
+            href="Pagina-principal.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Inicio
+          </a>
+
+        </li>
+
+
+        <!-- ENERGÍA FÓSIL -->
+
+        <li>
+
+          <a
+            href="energia-no-renovable.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Energía fósil
+          </a>
+
+        </li>
+
+
+        <!-- ENERGÍA RENOVABLE -->
+
+        <li>
+
+          <a
+            href="PaginaEnergiaRenovable.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Energía renovable
+          </a>
+
+        </li>
+
+
+        <!-- TIPOS DE ENERGÍAS -->
+
+        <li class="relative">
+
+          <button
+            id="menuBtn"
+            type="button"
+            class="hover:text-green-500 text-gray-600 transition text-lg focus:outline-none"
+          >
+
+            Tipos de energías renovables ▾
+
+          </button>
+
+
+          <!-- SUBMENÚ -->
+
+          <ul
+            id="submenu"
+            class="hidden absolute left-1/2 -translate-x-1/2 mt-2 bg-gray-300 rounded-lg shadow-lg w-64 overflow-hidden"
+          >
+
+
+            <!-- SOLAR -->
+
+            <li>
+
+              <a
+                href="solar.html"
+                class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+              >
+                Energía solar
+              </a>
+
+            </li>
+
+
+            <!-- EÓLICA -->
+
+            <li>
+
+              <a
+                href="eolica-final.html"
+                class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+              >
+                Energía eólica
+              </a>
+
+            </li>
+
+
+            <!-- HIDRÁULICA -->
+
+            <li>
+
+              <a
+                href="hidro.html"
+                class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+              >
+                Energía hidráulica & Bioenergía
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+
+        <!-- API -->
+
+        <li>
+
+          <a
+            href="API-version3.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            API
+          </a>
+
+        </li>
+
+
+        <!-- DASHBOARD -->
+
+        <li>
+
+          <a
+            href="ej-grafica2.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Dashboard
+          </a>
+
+        </li>
+
+
+        <!-- CONTACTO -->
+
+        <li>
+
+          <a
+            href="Form-final.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Contacto
+          </a>
+
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<section
+  class="relative w-full h-[80vh] sm:h-[100vh] overflow-hidden pt-[120px]"
+>
+
+
+  <!-- IMAGEN -->
+
+  <img
+    src="imagenPaginaEnergiaRenovable/Paneles-Solares-1200x800-3033311031.jpg"
+    alt="Paneles solares"
+    class="absolute inset-0 w-full h-full object-cover z-0"
+  >
+
+
+  <!-- CAPA OSCURA -->
+
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent z-10"
+  ></div>
+
+
+  <!-- CONTENIDO -->
+
+  <div
+    class="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center"
+  >
+
+
+    <h1
+      class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-2xl mb-6"
+    >
+      ENERGÍA SOLAR
+    </h1>
+
+
+    <div
+      class="bg-gradient-to-b from-green-50 to-green-200 w-full max-w-[90%] sm:max-w-[800px] md:max-w-[1000px] mx-auto p-6 sm:p-8 rounded-xl shadow-xl text-gray-800"
+    >
+
+      <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+        La Fuerza de la Energía Solar
+      </h2>
+
+
+      <p
+        class="text-sm sm:text-base md:text-lg leading-relaxed mb-4"
+      >
+        La energía solar lidera el camino de las energías renovables,
+        siendo pieza clave en la transición hacia un futuro más sostenible.
+      </p>
+
+
+      <p
+        class="text-sm sm:text-base md:text-lg leading-relaxed mb-4"
+      >
+        Gracias a los avances tecnológicos, hoy la energía solar es una
+        de las alternativas más eficaces y accesibles.
+      </p>
+
+
+      <p
+        class="text-sm sm:text-base md:text-lg leading-relaxed"
+      >
+        En una era en la que proteger nuestro planeta es prioridad,
+        conocer los tipos de energía solar es esencial para acelerar el cambio.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ¿QUÉ ES LA ENERGÍA SOLAR?
+     ========================================================= -->
+
+<section>
+
+  <div
+    class="bg-gradient-to-b from-green-50 to-green-200 flex flex-col items-center justify-center mt-16 px-6 py-8 mx-auto max-w-3xl rounded-xl shadow-lg text-center"
+  >
+
+    <h2 class="text-3xl font-bold mb-6">
+      ¿Qué es la energía solar?
+    </h2>
+
+
+    <p class="text-lg leading-relaxed">
+
+      La energía solar es aquella que se obtiene a partir del sol
+      en forma de radiación electromagnética (luz, calor y rayos ultravioleta).
+      Mediante la instalación de paneles solares o colectores,
+      se puede utilizar para obtener energía térmica (sistema fototérmico)
+      o para generar electricidad (sistema fotovoltaico).
+
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TIPOS DE ENERGÍA SOLAR
+     ========================================================= -->
+
+<section class="mt-16 pb-16">
+
+  <div
+    class="bg-gradient-to-b from-green-50 to-green-200 w-full max-w-[80%] mx-auto p-8 rounded-xl shadow-xl text-gray-800"
+  >
+
+
+    <h2
+      class="text-3xl sm:text-4xl font-bold text-gray-700 mb-6 text-center"
+    >
+      ¿Qué tipos de energía solar existen?
+    </h2>
+
+
+    <!-- TARJETAS -->
+
+    <main class="flex justify-center items-center pt-8">
+
+      <div
+        class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-7xl transition-all duration-700 ease-in-out"
+      >
+
+
+        <!-- FOTOVOLTAICA -->
+
+        <div
+          class="box box-1 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+          data-target="fotovoltaica"
+        >
+
+          <h1
+            class="text-xl sm:text-2xl md:text-4xl font-extrabold text-green-500 drop-shadow-xl text-center px-4"
+          >
+            Energía solar fotovoltaica
+          </h1>
+
+        </div>
+
+
+        <!-- TÉRMICA -->
+
+        <div
+          class="box box-2 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+          data-target="termica"
+        >
+
+          <h1
+            class="text-xl sm:text-2xl md:text-4xl font-extrabold text-green-500 drop-shadow-lg text-center px-4"
+          >
+            Energía solar térmica
+          </h1>
+
+        </div>
+
+
+        <!-- PASIVA -->
+
+        <div
+          class="box box-3 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+          data-target="pasiva"
+        >
+
+          <h1
+            class="text-xl sm:text-2xl md:text-4xl font-extrabold text-green-500 drop-shadow-lg text-center px-4"
+          >
+            Energía solar pasiva
+          </h1>
+
+        </div>
+
+
+        <!-- HÍBRIDA -->
+
+        <div
+          class="box box-4 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+          data-target="hibrida"
+        >
+
+          <h1
+            class="text-xl sm:text-2xl md:text-4xl font-extrabold text-green-500 drop-shadow-lg text-center px-4"
+          >
+            Energía solar híbrida
+          </h1>
+
+        </div>
+
+      </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         CONTENIDO DINÁMICO
+         ===================================================== -->
+
+    <div class="mt-12 space-y-8">
+
+
+      <!-- FOTOVOLTAICA -->
+
+      <div
+        id="fotovoltaica"
+        class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+      >
+
+        <h3 class="text-2xl font-bold text-green-600 mb-4">
+          Energía solar fotovoltaica
+        </h3>
+
+
+        <p class="text-base leading-relaxed mb-4">
+
+          Este tipo de energía solar funciona por medio de un sistema
+          fotovoltaico. Se trata de una instalación que produce electricidad
+          utilizando módulos fotovoltaicos, los cuales son capaces de transformar
+          la radiación solar directamente en energía eléctrica.
+
+          Los paneles solares contienen células fotovoltaicas que, al recibir
+          la luz de forma directa, se ionizan y liberan electrones que al
+          interactuar entre sí generan corriente eléctrica.
+
+        </p>
+
+
+        <p class="text-lg leading-relaxed mb-6">
+
+          La energía fotovoltaica ha recibido un impulso en los últimos años
+          con la llegada de las comunidades solares y el ahorro energético
+          que suponen las nuevas instalaciones de autoconsumo solar.
+
+          Además, la llamada energía agrovoltaica también está adquiriendo
+          especial relevancia dentro del sector agrícola.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- TÉRMICA -->
+
+      <div
+        id="termica"
+        class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+      >
+
+        <h3 class="text-2xl font-bold text-green-600 mb-4">
+          Energía solar térmica
+        </h3>
+
+
+        <p class="text-lg leading-relaxed mb-6">
+
+          Los equipos de energía solar térmica utilizan colectores o captadores
+          solares para transformar la radiación solar en calor.
+
+          Estos captadores recogen y almacenan la radiación solar para calentar
+          el agua que más tarde se utiliza como apoyo a los sistemas de
+          calefacción o agua caliente para uso higiénico, residencial o industrial.
+
+        </p>
+
+
+        <p class="text-lg leading-relaxed mb-6">
+
+          Existe otra variante llamada energía termosolar de concentración,
+          también conocida por sus siglas inglesas CSP
+          (Concentrated Solar Power).
+
+          En esta ocasión el sistema funciona con una serie de lentes o espejos
+          que concentran la luz solar en una superficie concreta.
+
+          La energía que se genera a través de este procedimiento se destina
+          a la producción de electricidad, utilizando el calor para hervir agua
+          que produzca vapor y movilice, por ejemplo, las turbinas de un generador.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- PASIVA -->
+
+      <div
+        id="pasiva"
+        class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+      >
+
+        <h3 class="text-2xl font-bold text-green-600 mb-4">
+          Energía solar pasiva
+        </h3>
+
+
+        <p class="text-lg leading-relaxed mb-6">
+
+          En el caso de la energía solar pasiva se aprovecha directamente
+          la energía del sol por medio de materiales y soluciones constructivas,
+          sin necesidad de tener que transformarla en otro tipo de energía,
+          como hemos visto en los casos anteriores (que podríamos considerar activos).
+
+          La tecnología solar pasiva es parte fundamental del ecodiseño y la
+          arquitectura bioclimática, siendo su uso principal el calentamiento
+          de los espacios habitables.
+
+          La iluminación natural, ya sea directa o por medio de tubos de luz
+          (con espejos en su interior), también puede considerarse como un
+          ejemplo de aplicación pasiva de la energía solar.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- HÍBRIDA -->
+
+      <div
+        id="hibrida"
+        class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+      >
+
+        <h3 class="text-2xl font-bold text-green-600 mb-4">
+          Energía solar híbrida
+        </h3>
+
+
+        <p class="text-lg leading-relaxed mb-6">
+
+          En este último caso se combina cualquiera de los tipos de energía
+          solar que hemos visto anteriormente con otras energías,
+          principalmente renovables, para lograr así una mayor aportación energética.
+
+        </p>
+
+
+        <p class="text-lg leading-relaxed mb-6">
+
+          El ejemplo más habitual lo encontramos en la combinación de
+          la energía solar y la eólica.
+
+          Los sistemas híbridos fotovoltaicos y eólicos combinan paneles
+          solares con aerogeneradores, aprovechando al máximo los recursos
+          del sol y el viento.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     VENTAJAS
+     ========================================================= -->
+
+<section class="mt-8 px-4 pb-16">
+
+
+  <h2
+    class="text-3xl font-bold text-gray-700 mb-4 text-center"
+  >
+    ¿Qué ventajas tiene la energía solar?
+  </h2>
+
+
+  <p
+    class="text-center text-base sm:text-lg mb-6"
+  >
+    Estas son algunas de las ventajas de la energía solar más destacables:
+  </p>
+
+
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+  >
+
+
+    <!-- TARJETA 1 -->
+
+    <div
+      class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition text-center"
+    >
+
+      <div
+        class="bg-gray-100 rounded-lg w-32 mx-auto p-3 mb-4"
+      >
+
+        <img
+          src="imagenPaginaEnergiaRenovable/bg-naranja_naturaleza-y-sostenibilidad_autoconsumo-energetico.svg"
+          alt="Energía solar"
+          class="w-full h-auto"
+        >
+
+      </div>
+
+
+      <h2
+        class="text-lg sm:text-xl font-semibold text-green-600"
+      >
+        Es una fuente de energía inagotable
+      </h2>
+
+
+      <p class="text-gray-700 mt-2">
+
+        La energía solar es una fuente de energía totalmente renovable.
+
+      </p>
+
+    </div>
+
+
+
+    <!-- TARJETA 2 -->
+
+    <div
+      class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition text-center"
+    >
+
+      <div
+        class="bg-gray-100 rounded-lg w-32 mx-auto p-3 mb-4"
+      >
+
+        <img
+          src="imagenPaginaEnergiaRenovable/bg-naranja_naturaleza-y-sostenibilidad_captura-de-co3.svg"
+          alt="Energía solar"
+          class="w-full h-auto"
+        >
+
+      </div>
+
+
+      <h2
+        class="text-lg sm:text-xl font-semibold text-green-600"
+      >
+        Energía sin emisiones de CO2
+      </h2>
+
+
+      <p class="text-gray-700 mt-2">
+
+        La energía solar no emite dióxido de carbono a la atmósfera
+        ni produce residuos durante su generación.
+
+      </p>
+
+    </div>
+
+
+
+    <!-- TARJETA 3 -->
+
+    <div
+      class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition text-center"
+    >
+
+      <div
+        class="bg-gray-100 rounded-lg w-32 mx-auto p-3 mb-4"
+      >
+
+        <img
+          src="imagenPaginaEnergiaRenovable/bg-naranja-secundario_funcionalidades_atencion-al-cliente.svg"
+          alt="Energía solar"
+          class="w-full h-auto"
+        >
+
+      </div>
+
+
+      <h2
+        class="text-lg sm:text-xl font-semibold text-green-600"
+      >
+        Es totalmente silenciosa
+      </h2>
+
+
+      <p class="text-gray-700 mt-2">
+
+        Se trata de una energía que no produce contaminación acústica
+        durante la generación eléctrica mediante paneles fotovoltaicos.
+
+      </p>
+
+    </div>
+
+
+
+    <!-- TARJETA 4 -->
+
+    <div
+      class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition text-center"
+    >
+
+      <div
+        class="bg-gray-100 rounded-lg w-32 mx-auto p-3 mb-4"
+      >
+
+        <img
+          src="imagenPaginaEnergiaRenovable/bg-naranja-secundario_productos-y-servicios_energia-solar.svg"
+          alt="Energía solar"
+          class="w-full h-auto"
+        >
+
+      </div>
+
+
+      <h2
+        class="text-lg sm:text-xl font-semibold text-green-600"
+      >
+        Es una energía accesible
+      </h2>
+
+
+      <p class="text-gray-700 mt-2">
+
+        La energía solar es fácil de instalar y adaptar a diferentes
+        lugares, incluso en zonas geográficamente remotas.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="bg-gray-300 py-4 mt-10">
+
+  <div
+    class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
+  >
+
+
+    <p class="text-sm text-gray-500">
+
+      &copy; 2025 Energía Renovable.
+      Todos los derechos reservados.
+
+    </p>
+
+
+    <div class="flex space-x-4 mt-2 md:mt-0">
+
+      <a
+        href="Pagina-principal.html"
+        class="text-gray-500 hover:text-green-400"
+      >
+        Inicio
+      </a>
+
+
+      <a
+        href="sobre-me.html"
+        class="text-gray-500 hover:text-green-400"
+      >
+        Sobre nosotros
+      </a>
+
+
+      <a
+        href="Form-final.html"
+        class="text-gray-500 hover:text-green-400"
+      >
+        Contacto
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   MENÚ MÓVIL
+   ========================================================= */
+
+const mobileMenuBtn =
+  document.getElementById('mobileMenuBtn');
+
+const navMenu =
+  document.getElementById('navMenu');
+
+
+mobileMenuBtn.addEventListener('click', () => {
+
+  navMenu.classList.toggle('hidden');
+
+});
+
+
+
+/* =========================================================
+   SUBMENÚ
+   ========================================================= */
+
+const menuBtn =
+  document.getElementById('menuBtn');
+
+const submenu =
+  document.getElementById('submenu');
+
+
+menuBtn.addEventListener('click', () => {
+
+  submenu.classList.toggle('hidden');
+
+});
+
+
+
+/* =========================================================
+   CERRAR SUBMENÚ AL HACER CLIC FUERA
+   ========================================================= */
+
+document.addEventListener('click', (event) => {
+
+  if (
+    !menuBtn.contains(event.target) &&
+    !submenu.contains(event.target)
+  ) {
+
+    submenu.classList.add('hidden');
+
+  }
+
+});
+
+
+
+/* =========================================================
+   ANIMACIÓN DE LAS TARJETAS
+   ========================================================= */
+
+const container =
+  document.querySelector('.container');
+
+const boxes =
+  container.querySelectorAll('.box');
+
+
+const layouts = [
+
+  "6fr 1fr 1fr 1fr",
+
+  "1fr 6fr 1fr 1fr",
+
+  "1fr 1fr 6fr 1fr",
+
+  "1fr 1fr 1fr 6fr"
+
+];
+
+
+boxes.forEach((box, index) => {
+
+
+  box.addEventListener('mouseenter', () => {
+
+    /*
+      Solo aplicamos la animación
+      en pantallas grandes.
+    */
+
+    if (window.innerWidth >= 768) {
+
+      container.style.gridTemplateColumns =
+        layouts[index];
+
+    }
+
+  });
+
+
+  box.addEventListener('mouseleave', () => {
+
+    if (window.innerWidth >= 768) {
+
+      container.style.gridTemplateColumns =
+        '1fr 1fr 1fr 1fr';
+
+    }
+
+  });
+
+});
+
+
+
+/* =========================================================
+   MOSTRAR CONTENIDO AL HACER CLIC
+   ========================================================= */
+
+const cards =
+  document.querySelectorAll('.box');
+
+
+const detailSections =
+  document.querySelectorAll(
+    '#fotovoltaica, #termica, #pasiva, #hibrida'
+  );
+
+
+cards.forEach(card => {
+
+
+  card.addEventListener('click', () => {
+
+
+    const targetId =
+      card.getAttribute('data-target');
+
+
+    /*
+      Ocultar todos los contenidos
+    */
+
+    detailSections.forEach(section => {
+
+      section.classList.add('hidden');
+
+    });
+
+
+    /*
+      Mostrar el contenido seleccionado
+    */
+
+    const targetSection =
+      document.getElementById(targetId);
+
+
+    if (targetSection) {
+
+      targetSection.classList.remove('hidden');
+
+
+      /*
+        Llevar el contenido visible
+        a una posición cómoda
+      */
+
+      setTimeout(() => {
+
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+
+      }, 100);
+
+    }
+
+  });
+
+});
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energía renovable</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #nav{
+        background-color: #66ab65;
+    }
+
+    #imagen1 {
+        position: relative;
+        top: -40px;
+        width: 200px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+
+<!-- Header -->
+<header class="flex flex-wrap items-center justify-between px-6 py-4 fixed w-full z-20 shadow bg-gray-300">
+  <div class="text-2xl font-bold text-green-600">
+    <img src="logo3.png" alt="Logo" class="w-[130px] ml-[120px]">
+  </div>
+
+  <!-- Botón para menú en móvil -->
+  <button class="md:hidden block text-gray-500 hover:text-green-400" onclick="document.getElementById('navMenu').classList.toggle('hidden')">
+    ☰
+  </button>
+
+  <!-- Menú de navegación -->
+  <nav id="navMenu" class="w-full md:w-auto md:flex hidden flex-col md:flex-row gap-6 mt-4 md:mt-0 items-center">
+    <ul class="flex flex-col md:flex-row gap-6 items-center w-full md:w-auto">
+      <li><a href="Pagina-principal.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Inicio</a></li>
+      <li><a href="energia-no-renovable.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Energía fósil</a></li>
+      <li><a href="PaginaEnergiaRenovable.html" class="hover:text-green-400 text-gray-500 transition text-xl">Energía renovable</a></li>
+      <li class="relative group">
+        <button id="menuBtn" class="hover:text-green-400 transition text-gray-500 focus:outline-none text-xl">
+          Tipos de energías renovables ▾
+        </button>
+        <ul id="submenu" class="hidden group-hover:block absolute bg-gray-300 text-white mt-2 rounded shadow-md w-52 z-10">
+          <li><a href="solar.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía solar</a></li>
+          <li><a href="eolica-final.htm" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía eólica</a></li>
+          <li><a href="hidro.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía hidráulica & Bioenergía</a></li>
+        </ul>
+      </li>
+      <li><a href="API-version3.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">API</a></li>
+      <li><a href="ej-grafica2.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Dashboard</a></li>
+      <li><a href="Form-final.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Contenedor con padding-top para compensar el header fijo -->
+<div class="relative w-full pt-24">
+  <img src="imagenPaginaEnergiaRenovable/imagen1.jpeg" alt="imagen" class="w-full h-auto rounded shadow-lg mx-auto">
+  <h1 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-extrabold drop-shadow-2xl text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-center px-2">
+    Energía Renovable
+  </h1>
+</div>
+
+  <div class="flex justify-center items-center min-h-screen">
+  <p class="text-center text-gray-800 text-lg bg-white/70 p-4 rounded w-[1200px] drop-shadow-2xl">
+    La energía renovable es aquella que se obtiene de fuentes naturales capaces de regenerarse de forma constante y prácticamente ilimitada, como el sol, el viento, el agua, la biomasa o el calor de la tierra. 
+    A diferencia de los combustibles fósiles, estas fuentes no se agotan con el uso ni emiten grandes cantidades de gases contaminantes. <br>
+    En un mundo cada vez más consciente del impacto ambiental y del cambio climático, la transición hacia energías limpias representa una necesidad urgente. 
+    Las renovables no solo ayudan a reducir las emisiones de gases de efecto invernadero, sino que también promueven la autosuficiencia energética, la innovación tecnológica y la creación de empleos sostenibles. <br>
+    El desarrollo y la adopción masiva de estas tecnologías está transformando radicalmente la forma en que producimos, distribuimos y consumimos la energía, marcando el camino hacia un futuro más verde y resiliente.
+  </p>
+</div>
+
+
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 py-16 lg:px-32 animate-fade-in">
+  
+  <!-- Card 1 -->
+  <a href="solar.html" class="transform hover:scale-105 transition duration-300 bg-white rounded-xl shadow-lg p-6 block hover:shadow-2xl">
+    <img src="imagenPaginaEnergiaRenovable/energia-solar.jpg" alt="Solar" class="rounded-lg w-full h-40 object-cover mb-4">
+    <h2 class="text-xl font-semibold text-green-600">Energía Solar</h2>
+    <p class="text-gray-700 mt-2">Aprovecha la luz del sol para generar electricidad limpia y renovable.</p>
+  </a>
+
+  <!-- Card 2 -->
+  <a href="eolica.html" class="transform hover:scale-105 transition duration-300 bg-white rounded-xl shadow-lg p-6 block hover:shadow-2xl">
+    <img src="imagenPaginaEnergiaRenovable/Energía Eólica.jpg" alt="Eólica" class="rounded-lg w-full h-40 object-cover mb-4">
+    <h2 class="text-xl font-semibold text-green-600">Energía Eólica</h2>
+    <p class="text-gray-700 mt-2">Utiliza el viento como fuente de energía mediante aerogeneradores.</p>
+  </a>
+
+  <!-- Card 3 -->
+  <a href="hidro.html" class="transform hover:scale-105 transition duration-300 bg-white rounded-xl shadow-lg p-6 block hover:shadow-2xl">
+    <img src="imagenPaginaEnergiaRenovable/hidrau.jpg" alt="Hidráulica" class="rounded-lg w-full h-40 object-cover mb-4">
+    <h2 class="text-xl font-semibold text-green-600">Energía Hidráulica</h2>
+    <p class="text-gray-700 mt-2">Generación de electricidad mediante el movimiento del agua en ríos o presas.</p>
+  </a>
+
+  <!-- Card 4 -->
+  <a href="hidro.html" class="transform hover:scale-105 transition duration-300 bg-white rounded-xl shadow-lg p-6 block hover:shadow-2xl">
+    <img src="imagenPaginaEnergiaRenovable/biogas-1.jpg" alt="Biomasa" class="rounded-lg w-full h-40 object-cover mb-4">
+    <h2 class="text-xl font-semibold text-green-600">Biomasa</h2>
+    <p class="text-gray-700 mt-2">Transforma residuos orgánicos en energía útil y sostenible.</p>
+  </a>
+
+</div>
+  
+<div class="p-10 mx-4 lg:mx-32 bg-gradient-to-r from-blue-50 to-blue-200 shadow-xl">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32">
+    
+    <!-- Bloque 1 -->
+    <div class="text-2xl lg:text-4xl font-bold text-gray-800">
+      ¿Qué ventajas ofrece el abundante potencial renovable de España en su estrategia energética futura?
+    </div>
+    <div class="text-gray-700 text-sm lg:text-lg lg:pr-32">
+      <p>
+        La energía renovable proviene de recursos naturales que se reponen de forma continua. Genera más del 50% de toda la electricidad en España, y ese porcentaje sigue creciendo. <br><br>
+        España es un país rico en recursos, con suficiente potencial de energía renovable como para generar más de 100 veces la cantidad de electricidad que los estadounidenses consumen cada año.
+      </p>
+    </div>
+
+    <!-- Bloque 2 -->
+    <div class="text-2xl lg:text-4xl font-bold text-gray-800 py-10">
+      ¿Cómo usar energía renovable en el hogar?
+    </div>
+    <div class="text-gray-700 text-sm lg:text-lg lg:pr-32">
+      <p>
+        Propietarios e inquilinos pueden utilizar energía limpia en casa comprando electricidad renovable, instalando sistemas como paneles solares o pequeños aerogeneradores para generar su propia electricidad, 
+        o utilizando recursos renovables como energía solar pasiva o bombas de calor geotérmicas para climatizar agua o habitaciones. Existen muchas formas de mejorar el confort en el hogar utilizando energía renovable. <br><br>
+        También es posible conectar estos recursos y sistemas de almacenamiento a una microrred que funcione de manera autónoma y local, o que se integre con la red eléctrica en el punto de conexión entre el consumidor y su proveedor.
+        Si estás considerando mejorar la eficiencia energética de tu hogar, visita Energy Saver para obtener más información sobre el uso de energía renovable en casa. Es posible que seas elegible para créditos fiscales federales y estatales si instalas un sistema de energía renovable. Consulta ENERGY STAR para conocer los créditos fiscales federales disponibles para propietarios de viviendas. Para información sobre incentivos estatales, visita la Base de Datos de Incentivos Estatales para Energías Renovables y Eficiencia.
+      </p>
+    </div>
+
+  </div>
+</div>
+<section class="bg-white p-10 mx-4 lg:mx-32 shadow-xl mt-32">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Título principal -->
+    <h2 class="text-2xl lg:text-4xl font-extrabold text-center text-green-900 mb-6">
+      🌱 ¿Qué es la Huella de Carbono?
+    </h2>
+
+    <!-- Introducción con tooltip interactivo -->
+    <p class="text-center text-gray-700 text-sm lg:text-lg max-w-3xl mx-auto mb-12 leading-relaxed">
+      La huella de carbono es un indicador ambiental que mide la cantidad total de 
+      <span class="group relative inline-block cursor-help text-green-700 font-semibold">
+        gases de efecto invernadero (GEI)
+        <span class="absolute left-1/2 -translate-x-1/2 mt-2 w-[260px] bg-green-100 text-green-800 text-sm rounded-md shadow-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+          Gases como el CO₂, CH₄ y N₂O que atrapan el calor en la atmósfera y contribuyen al calentamiento global.
+        </span>
+      </span>
+      que se generan directa o indirectamente por nuestras actividades cotidianas. Conocerla nos permite tomar decisiones más sostenibles y reducir nuestro impacto ambiental.
+    </p>
+
+    <!-- Tarjetas informativas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Definición -->
+      <div class="bg-gradient-to-r from-blue-50 to-blue-200 rounded-xl shadow-lg p-6 hover:shadow-2xl transform transition hover:scale-105">
+        <h3 class="text-xl lg:text-2xl font-bold text-green-700 mb-3">📌 Definición</h3>
+        <p class="text-gray-700 text-sm lg:text-lg leading-relaxed">
+          Es la cantidad total de gases de efecto invernadero que se emiten como resultado de nuestras acciones. Se mide en toneladas de CO₂ equivalente y refleja el impacto climático de personas, productos o procesos.
+        </p>
+      </div>
+
+      <!-- Funcionamiento -->
+      <div class="bg-gradient-to-r from-blue-50 to-blue-200 rounded-xl shadow-lg p-6 hover:shadow-2xl transform transition hover:scale-105">
+        <h3 class="text-xl lg:text-2xl font-bold text-green-700 mb-3">⚙️ ¿Cómo se calcula?</h3>
+        <p class="text-gray-700 text-sm lg:text-lg leading-relaxed">
+          Se analiza el consumo energético, el tipo de transporte, la alimentación y los residuos generados. Cada dato se multiplica por factores de emisión para calcular su equivalente en CO₂.
+        </p>
+      </div>
+
+      <!-- Reducción -->
+      <div class="bg-gradient-to-r from-blue-50 to-blue-200 rounded-xl shadow-lg p-6 hover:shadow-2xl transform transition hover:scale-105">
+        <h3 class="text-xl lg:text-2xl font-bold text-green-700 mb-3">✅ ¿Cómo reducirla?</h3>
+        <ul class="list-disc list-inside text-green-800 space-y-2 text-sm lg:text-lg">
+          <li>Usar transporte público, bicicleta o caminar</li>
+          <li>Consumir productos locales y de temporada</li>
+          <li>Reducir el uso de energía y plásticos</li>
+          <li>Utilizar fuentes renovables como solar y eólica</li>
+          <li>Aplicar las 3R: reducir, reutilizar y reciclar</li>
+          <li>Evitar el desperdicio alimentario</li>
+          <li>Participar en proyectos de reforestación</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-300 py-4 mt-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-sm text-gray-500">&copy; 2025 Energía Renovable. Todos los derechos reservados.</p>
+      <div class="flex space-x-4 mt-2 md:mt-0">
+        <a href="Pagina-principal.html" class="text-gray-500 hover:text-green-400">Inicio</a>
+        <a href="sobre-me.html" class="text-gray-500 hover:text-green-400">Sobre nosotros</a>
+        <a href="Form-final.html" class="text-gray-500 hover:text-green-400">Contacto</a>
+      </div>
+    </div>
+  </footer>
+ 
+  
+  
+  <!-- Script menú desplegable -->
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const submenu = document.getElementById("submenu");
+    btn.addEventListener("click", () => submenu.classList.toggle("hidden"));
+    document.addEventListener("click", function(e) {
+      if (!btn.contains(e.target) && !submenu.contains(e.target)) {
+        submenu.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>

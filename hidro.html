@@ -1,0 +1,801 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Energía Hidráulica & Bioenergía</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+
+<body class="bg-white">
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header
+  class="fixed top-0 left-0 w-full z-50 shadow bg-gray-300"
+>
+
+  <div
+    class="flex flex-wrap items-center justify-between px-6 py-4"
+  >
+
+
+    <!-- LOGO -->
+
+    <a href="Pagina-principal.html">
+
+      <img
+        src="logo3.png"
+        alt="Logo"
+        class="w-[130px] ml-0 md:ml-[80px]"
+      >
+
+    </a>
+
+
+    <!-- BOTÓN MENÚ MÓVIL -->
+
+    <button
+      id="mobileMenuBtn"
+      type="button"
+      class="md:hidden text-gray-600 hover:text-green-500 text-3xl focus:outline-none"
+      aria-label="Abrir menú"
+    >
+      ☰
+    </button>
+
+
+    <!-- MENÚ -->
+
+    <nav
+      id="navMenu"
+      class="hidden md:block w-full md:w-auto"
+    >
+
+      <ul
+        class="flex flex-col md:flex-row gap-4 md:gap-6 items-center mt-4 md:mt-0"
+      >
+
+
+        <!-- INICIO -->
+
+        <li>
+
+          <a
+            href="Pagina-principal.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Inicio
+          </a>
+
+        </li>
+
+
+        <!-- ENERGÍA FÓSIL -->
+
+        <li>
+
+          <a
+            href="energia-no-renovable.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Energía fósil
+          </a>
+
+        </li>
+
+
+        <!-- ENERGÍA RENOVABLE -->
+
+        <li>
+
+          <a
+            href="PaginaEnergiaRenovable.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Energía renovable
+          </a>
+
+        </li>
+
+
+        <!-- TIPOS DE ENERGÍAS -->
+
+        <li class="relative w-full md:w-auto text-center">
+
+          <button
+            id="menuBtn"
+            type="button"
+            class="hover:text-green-500 text-gray-600 transition text-lg focus:outline-none"
+          >
+
+            Tipos de energías renovables ▾
+
+          </button>
+
+
+          <!-- SUBMENÚ -->
+
+          <ul
+            id="submenu"
+            class="hidden absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-gray-300 rounded-lg shadow-lg w-64 overflow-hidden z-50"
+          >
+
+            <li>
+
+              <a
+                href="solar.html"
+                class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+              >
+                Energía solar
+              </a>
+
+            </li>
+
+
+            <li>
+
+              <a
+                href="eolica-final.html"
+                class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+              >
+                Energía eólica
+              </a>
+
+            </li>
+
+
+            <li>
+
+              <a
+                href="hidro.html"
+                class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+              >
+                Energía hidráulica & Bioenergía
+              </a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+
+        <!-- API -->
+
+        <li>
+
+          <a
+            href="API-version3.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            API
+          </a>
+
+        </li>
+
+
+        <!-- DASHBOARD -->
+
+        <li>
+
+          <a
+            href="ej-grafica2.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Dashboard
+          </a>
+
+        </li>
+
+
+        <!-- CONTACTO -->
+
+        <li>
+
+          <a
+            href="Form-final.html"
+            class="hover:text-green-500 text-gray-600 transition text-lg"
+          >
+            Contacto
+          </a>
+
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section
+  class="relative w-full h-[400px] overflow-hidden pt-[80px]"
+>
+
+
+  <!-- IMÁGENES -->
+
+  <div class="flex w-full h-full">
+
+
+    <!-- IMAGEN HIDRÁULICA -->
+
+    <div class="w-1/2 h-full">
+
+      <img
+        src="imagen-hidro-biomasa/hidro.jpg"
+        alt="Imagen hidráulica"
+        class="w-full h-full object-cover"
+      >
+
+    </div>
+
+
+    <!-- IMAGEN BIOMASA -->
+
+    <div class="w-1/2 h-full">
+
+      <img
+        src="imagen-hidro-biomasa/biomasa_sostenibilidad-energia-renovable-bbva-2904285308.jpg"
+        alt="Imagen biomasa"
+        class="w-full h-full object-cover"
+      >
+
+    </div>
+
+  </div>
+
+
+  <!-- OSCURECIMIENTO -->
+
+  <div
+    class="absolute inset-0 bg-black/40 z-10"
+  ></div>
+
+
+  <!-- TEXTO -->
+
+  <div
+    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4"
+  >
+
+    <h1
+      class="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-green-300 via-lime-400 to-emerald-500 bg-clip-text text-transparent drop-shadow-xl"
+    >
+      Energía hidráulica & Bioenergía
+    </h1>
+
+
+    <p
+      class="text-lg md:text-xl text-white mt-4 max-w-2xl drop-shadow"
+    >
+      Dos fuentes sostenibles que aprovechan el poder del agua
+      y la biomasa para transformar el futuro energético.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTENIDO
+     ===================================================== -->
+
+<div
+  class="bg-gradient-to-r from-green-50 to-blue-100 py-16 px-6"
+>
+
+
+  <!-- =================================================
+       DEFINICIONES
+       ================================================= -->
+
+  <section>
+
+    <div class="max-w-7xl mx-auto">
+
+
+      <h2
+        class="text-4xl font-extrabold text-center text-blue-900 mb-12"
+      >
+        🔎 Definición de Energías
+      </h2>
+
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-8"
+      >
+
+
+        <!-- HIDRÁULICA -->
+
+        <div
+          class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition hover:scale-105"
+        >
+
+          <h3
+            class="text-2xl font-bold text-blue-700 mb-3"
+          >
+            🌊 Energía Hidráulica
+          </h3>
+
+
+          <p
+            class="text-gray-700 text-lg leading-relaxed"
+          >
+
+            Utiliza el movimiento del agua en ríos, presas
+            o corrientes naturales para generar electricidad.
+
+            Se basa en convertir la energía cinética y potencial
+            del agua en energía eléctrica mediante turbinas hidráulicas.
+
+          </p>
+
+        </div>
+
+
+        <!-- BIOMASA -->
+
+        <div
+          class="bg-green-50 rounded-xl shadow-lg p-8 hover:shadow-2xl transition hover:scale-105"
+        >
+
+          <h3
+            class="text-2xl font-bold text-green-700 mb-3"
+          >
+            🌿 Energía de Biomasa
+          </h3>
+
+
+          <p
+            class="text-gray-700 text-lg leading-relaxed"
+          >
+
+            Aprovecha materia orgánica como residuos agrícolas,
+            forestales o urbanos para producir calor, electricidad
+            o biocombustibles.
+
+            Es una forma de reciclaje energético que transforma
+            desechos en recursos útiles.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =================================================
+       FUNCIONAMIENTO
+       ================================================= -->
+
+  <section class="py-16">
+
+    <div class="max-w-7xl mx-auto">
+
+
+      <h2
+        class="text-4xl font-extrabold text-center text-blue-900 mb-12"
+      >
+        ⚙️ ¿Cómo funciona cada fuente de energía?
+      </h2>
+
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-8"
+      >
+
+
+        <!-- HIDRÁULICA -->
+
+        <div
+          class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transform transition hover:scale-105"
+        >
+
+          <h3
+            class="text-2xl font-bold text-blue-700 mb-3"
+          >
+            🌊 Energía Hidráulica
+          </h3>
+
+
+          <p
+            class="text-gray-700 text-lg leading-relaxed mb-4"
+          >
+
+            El agua almacenada en una presa se libera y fluye
+            por tuberías hacia turbinas.
+
+            La fuerza del agua hace girar las turbinas,
+            que están conectadas a generadores eléctricos.
+
+            La electricidad producida se transforma y se
+            distribuye por la red.
+
+          </p>
+
+
+          <ul
+            class="list-disc list-inside text-blue-800 space-y-1"
+          >
+
+            <li>
+              El agua cae desde altura → energía potencial
+            </li>
+
+            <li>
+              Activa turbinas → energía cinética
+            </li>
+
+            <li>
+              Generador produce electricidad
+            </li>
+
+            <li>
+              Transformador ajusta el voltaje
+            </li>
+
+          </ul>
+
+        </div>
+
+
+
+        <!-- BIOMASA -->
+
+        <div
+          class="bg-green-50 rounded-xl shadow-lg p-8 hover:shadow-2xl transform transition hover:scale-105"
+        >
+
+          <h3
+            class="text-2xl font-bold text-green-700 mb-3"
+          >
+            🌿 Energía de Biomasa
+          </h3>
+
+
+          <p
+            class="text-gray-700 text-lg leading-relaxed mb-4"
+          >
+
+            Se utiliza materia orgánica como madera,
+            residuos agrícolas o estiércol.
+
+            Esta biomasa se quema en calderas para generar
+            calor o vapor, que mueve turbinas conectadas
+            a generadores.
+
+            También puede transformarse en biogás o
+            biocombustibles mediante procesos bioquímicos.
+
+          </p>
+
+
+          <ul
+            class="list-disc list-inside text-green-800 space-y-1"
+          >
+
+            <li>
+              Combustión o fermentación de residuos
+            </li>
+
+            <li>
+              Generación de calor, vapor o biogás
+            </li>
+
+            <li>
+              Turbinas activan generadores eléctricos
+            </li>
+
+            <li>
+              Aplicable en calefacción, electricidad y transporte
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =================================================
+       VENTAJAS
+       ================================================= -->
+
+  <section class="py-16">
+
+    <div class="max-w-7xl mx-auto">
+
+
+      <h2
+        class="text-4xl font-extrabold text-center text-blue-900 mb-12"
+      >
+        ✅ Ventajas de Cada Energía
+      </h2>
+
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-8"
+      >
+
+
+        <!-- HIDRÁULICA -->
+
+        <div
+          class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition hover:scale-105"
+        >
+
+          <h4
+            class="text-xl font-bold text-blue-700 mb-2"
+          >
+            🌊 Hidráulica
+          </h4>
+
+
+          <ul
+            class="list-disc list-inside text-blue-800 space-y-1"
+          >
+
+            <li>
+              Alta eficiencia energética
+            </li>
+
+            <li>
+              Bajas emisiones contaminantes
+            </li>
+
+            <li>
+              Estabilidad y fiabilidad en la producción
+            </li>
+
+            <li>
+              Permite almacenamiento en embalses
+            </li>
+
+            <li>
+              Vida útil prolongada
+            </li>
+
+          </ul>
+
+        </div>
+
+
+
+        <!-- BIOMASA -->
+
+        <div
+          class="bg-green-50 rounded-xl shadow-md p-6 hover:shadow-xl transition hover:scale-105"
+        >
+
+          <h4
+            class="text-xl font-bold text-green-700 mb-2"
+          >
+            🌿 Biomasa
+          </h4>
+
+
+          <ul
+            class="list-disc list-inside text-green-800 space-y-1"
+          >
+
+            <li>
+              Reduce residuos orgánicos
+            </li>
+
+            <li>
+              Fuente renovable y abundante
+            </li>
+
+            <li>
+              Menor dependencia de combustibles fósiles
+            </li>
+
+            <li>
+              Impulsa el empleo rural
+            </li>
+
+            <li>
+              Balance neutro de emisiones de CO₂
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer
+  class="bg-gray-300 py-4 mt-10"
+>
+
+  <div
+    class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
+  >
+
+
+    <p class="text-sm text-gray-500">
+
+      &copy; 2025 Energía Renovable.
+      Todos los derechos reservados.
+
+    </p>
+
+
+    <div
+      class="flex space-x-4 mt-2 md:mt-0"
+    >
+
+      <a
+        href="Pagina-principal.html"
+        class="text-gray-500 hover:text-green-400"
+      >
+        Inicio
+      </a>
+
+
+      <a
+        href="sobre-me.html"
+        class="text-gray-500 hover:text-green-400"
+      >
+        Sobre nosotros
+      </a>
+
+
+      <a
+        href="Form-final.html"
+        class="text-gray-500 hover:text-green-400"
+      >
+        Contacto
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT DEL MENÚ
+     ===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   MENÚ MÓVIL
+   ===================================================== */
+
+const mobileMenuBtn =
+  document.getElementById("mobileMenuBtn");
+
+const navMenu =
+  document.getElementById("navMenu");
+
+
+mobileMenuBtn.addEventListener("click", () => {
+
+  navMenu.classList.toggle("hidden");
+
+});
+
+
+
+/* =====================================================
+   SUBMENÚ
+   ===================================================== */
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const submenu =
+  document.getElementById("submenu");
+
+
+menuBtn.addEventListener("click", (event) => {
+
+  event.stopPropagation();
+
+  submenu.classList.toggle("hidden");
+
+});
+
+
+
+/* =====================================================
+   CERRAR SUBMENÚ AL HACER CLIC FUERA
+   ===================================================== */
+
+document.addEventListener("click", (event) => {
+
+  if (
+    !menuBtn.contains(event.target) &&
+    !submenu.contains(event.target)
+  ) {
+
+    submenu.classList.add("hidden");
+
+  }
+
+});
+
+
+
+/* =====================================================
+   CERRAR MENÚ MÓVIL AL SELECCIONAR UN ENLACE
+   ===================================================== */
+
+const menuLinks =
+  navMenu.querySelectorAll("a");
+
+
+menuLinks.forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    if (window.innerWidth < 768) {
+
+      navMenu.classList.add("hidden");
+
+    }
+
+  });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

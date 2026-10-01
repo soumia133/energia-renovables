@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Energía Renovable - Sobre mí</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-cyan-50 text-teal-900 font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+<header class="flex flex-wrap items-center justify-between px-6 py-4 fixed w-full z-20 shadow bg-gray-300">
+  <div class="text-2xl font-bold text-green-600">
+    <img src="logo3.png" alt="Logo" class="w-[130px] ml-[120px]">
+  </div>
+
+  <!-- Botón para menú en móvil -->
+  <button class="md:hidden block text-gray-500 hover:text-green-400" onclick="document.getElementById('navMenu').classList.toggle('hidden')">
+    ☰
+  </button>
+
+  <!-- Menú de navegación -->
+  <nav id="navMenu" class="w-full md:w-auto md:flex hidden flex-col md:flex-row gap-6 mt-4 md:mt-0 items-center">
+    <ul class="flex flex-col md:flex-row gap-6 items-center w-full md:w-auto">
+      <li><a href="Pagina-principal.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Inicio</a></li>
+      <li><a href="energia-no-renovable.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Energía fósil</a></li>
+      <li><a href="PaginaEnergiaRenovable.html" class="hover:text-green-400 text-gray-500 transition text-xl">Energía renovable</a></li>
+      <li class="relative group">
+        <button id="menuBtn" class="hover:text-green-400 transition text-gray-500 focus:outline-none text-xl">
+          Tipos de energías renovables ▾
+        </button>
+        <ul id="submenu" class="hidden group-hover:block absolute bg-gray-300 text-white mt-2 rounded shadow-md w-52 z-10">
+          <li><a href="solar.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía solar</a></li>
+          <li><a href="eolica-final.htm" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía eólica</a></li>
+          <li><a href="hidro.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía hidráulica & Bioenergía</a></li>
+        </ul>
+      </li>
+      <li><a href="API-version3.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">API</a></li>
+      <li><a href="ej-grafica2.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Dashboard</a></li>
+      <li><a href="Form-final.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <main class="flex-grow max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8 mt-10">
+    <section id="sobre-mi">
+      <h2 class="text-3xl font-semibold text-teal-700 mb-4">Sobre mí</h2>
+      <p class="mb-4 leading-relaxed">
+        Hola, soy un apasionado de las energías renovables y la sostenibilidad ambiental. Desde pequeño, he estado interesado en cómo podemos cuidar el planeta utilizando fuentes de energía limpias y eficientes.
+      </p>
+      <p class="mb-4 leading-relaxed">
+        Mi objetivo es promover el uso de energías renovables como la solar, eólica e hidráulica para reducir la dependencia de los combustibles fósiles y combatir el cambio climático.
+      </p>
+      <p class="leading-relaxed">
+        En esta página encontrarás información, noticias y recursos para aprender más sobre cómo las energías renovables pueden cambiar nuestro mundo para mejor.
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+ <footer class="bg-gray-300 py-4 mt-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-sm text-gray-500">&copy; 2025 Energía Renovable. Todos los derechos reservados.</p>
+      <div class="flex space-x-4 mt-2 md:mt-0">
+        <a href="Pagina-principal.html" class="text-gray-500 hover:text-green-400">Inicio</a>
+        <a href="sobre-me.html" class="text-gray-500 hover:text-green-400">Sobre nosotros</a>
+        <a href="Form-final.html" class="text-gray-500 hover:text-green-400">Contacto</a>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <!-- Script menú desplegable -->
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const submenu = document.getElementById("submenu");
+    btn.addEventListener("click", () => submenu.classList.toggle("hidden"));
+    document.addEventListener("click", function(e) {
+      if (!btn.contains(e.target) && !submenu.contains(e.target)) {
+        submenu.classList.add("hidden");
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energía Eólica</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* =========================
+       IMÁGENES DE LAS TARJETAS
+       ========================= */
+
+    .box-1 {
+      --img: url('imagen-eolico/img1.jpg');
+    }
+
+    .box-2 {
+      --img: url('imagen-eolico/Aerobomba_2.jpg');
+    }
+
+    .box-3 {
+      --img: url('imagen-eolico/img2.jpg');
+    }
+
+    .box-4 {
+      --img: url('imagen-eolico/img3.webp');
+    }
+
+    .box {
+      background-image: var(--img);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.03);
+      z-index: 10;
+    }
+
+    .box::after {
+      content: attr(data-text);
+      position: absolute;
+      font-size: 1rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 0.5rem;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      padding: 0.5rem 1rem;
+      transition: opacity 0.4s, transform 0.4s;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .box:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .container:hover .box {
+      filter: grayscale(80%) brightness(60%);
+    }
+
+    .container .box:hover {
+      filter: grayscale(0%) brightness(100%);
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="fixed top-0 left-0 w-full z-50 shadow bg-gray-300">
+
+    <div class="flex flex-wrap items-center justify-between px-6 py-4">
+
+      <!-- LOGO -->
+      <a href="Pagina-principal.html">
+        <img
+          src="logo3.png"
+          alt="Logo"
+          class="w-[130px] ml-0 md:ml-[80px]"
+        />
+      </a>
+
+      <!-- BOTÓN MENÚ MÓVIL -->
+      <button
+        id="mobileMenuBtn"
+        type="button"
+        class="md:hidden text-gray-600 hover:text-green-500 text-3xl focus:outline-none"
+        aria-label="Abrir menú"
+      >
+        ☰
+      </button>
+
+      <!-- MENÚ -->
+      <nav
+        id="navMenu"
+        class="hidden md:block w-full md:w-auto"
+      >
+
+        <ul class="flex flex-col md:flex-row gap-4 md:gap-6 items-center mt-4 md:mt-0">
+
+          <li>
+            <a
+              href="Pagina-principal.html"
+              class="hover:text-green-500 text-gray-600 transition text-lg"
+            >
+              Inicio
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="energia-no-renovable.html"
+              class="hover:text-green-500 text-gray-600 transition text-lg"
+            >
+              Energía fósil
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="PaginaEnergiaRenovable.html"
+              class="hover:text-green-500 text-gray-600 transition text-lg"
+            >
+              Energía renovable
+            </a>
+          </li>
+
+          <!-- SUBMENÚ -->
+          <li class="relative w-full md:w-auto text-center">
+
+            <button
+              id="menuBtn"
+              type="button"
+              class="hover:text-green-500 text-gray-600 transition text-lg focus:outline-none"
+            >
+              Tipos de energías renovables ▾
+            </button>
+
+            <ul
+              id="submenu"
+              class="hidden absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-gray-300 rounded-lg shadow-lg w-64 overflow-hidden z-50"
+            >
+
+              <li>
+                <a
+                  href="solar.html"
+                  class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+                >
+                  Energía solar
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="eolica-final.html"
+                  class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+                >
+                  Energía eólica
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="hidro.html"
+                  class="block px-4 py-3 text-gray-600 hover:bg-green-600 hover:text-white"
+                >
+                  Energía hidráulica & Bioenergía
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+
+          <li>
+            <a
+              href="API-version3.html"
+              class="hover:text-green-500 text-gray-600 transition text-lg"
+            >
+              API
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="ej-grafica2.html"
+              class="hover:text-green-500 text-gray-600 transition text-lg"
+            >
+              Dashboard
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="Form-final.html"
+              class="hover:text-green-500 text-gray-600 transition text-lg"
+            >
+              Contacto
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+
+  <section class="relative w-full h-[80vh] sm:h-[100vh] overflow-hidden pt-[80px]">
+
+    <img
+      src="imagen-eolico/parque-eolico-chile-1772091019.jpg"
+      alt="Parque eólico"
+      class="absolute inset-0 w-full h-full object-cover z-0"
+    />
+
+    <!-- Oscurecimiento -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent z-10"></div>
+
+    <!-- Contenido -->
+    <div class="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center">
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-2xl mb-6">
+        ENERGÍA EÓLICA
+      </h1>
+
+      <div
+        class="bg-gradient-to-b from-green-50 to-green-200 w-full max-w-[90%] sm:max-w-[800px] md:max-w-[1000px] mx-auto p-6 sm:p-8 rounded-xl shadow-xl text-gray-800"
+      >
+
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-green-800">
+          ¿Sabías que se puede generar energía eléctrica a partir de la fuerza del viento?
+        </h2>
+
+        <p class="text-sm sm:text-base md:text-lg leading-relaxed mb-4">
+          La energía eólica es aquella que se obtiene a partir de la fuerza del viento,
+          llamada también energía cinética del viento y se utiliza para producir electricidad.
+          Estamos ante una energía renovable, ya que el viento es un recurso renovable,
+          que también es limpia y respetuosa con el medio ambiente.
+        </p>
+
+        <p class="text-sm sm:text-base md:text-lg leading-relaxed">
+          Esto no significa que sea inocua o que no tenga ningún impacto negativo,
+          todas las cosas lo tienen, pero en este caso se trata de una energía renovable
+          con un impacto ambiental muy bajo, en comparación a las energías no renovables
+          o a otras renovables, y que resulta ser muy eficiente.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       NAVBAR INTERNA
+       ===================================================== -->
+
+  <nav class="bg-white shadow">
+
+    <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-6 py-4 px-4">
+
+      <a
+        href="#que-funciona"
+        class="text-green-700 font-medium hover:underline"
+      >
+        ¿Cómo funciona?
+      </a>
+
+      <a
+        href="#ventajas"
+        class="text-green-700 font-medium hover:underline"
+      >
+        Ventajas
+      </a>
+
+      <a
+        href="#aplicaciones"
+        class="text-green-700 font-medium hover:underline"
+      >
+        Aplicaciones
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- =====================================================
+       ¿CÓMO FUNCIONA?
+       ===================================================== -->
+
+  <section id="que-funciona" class="px-4">
+
+    <div
+      class="bg-gradient-to-b from-white to-green-200 flex flex-col items-center justify-center mt-16 px-8 py-10 mx-auto max-w-3xl rounded-xl shadow-xl text-center"
+    >
+
+      <h2 class="text-4xl font-extrabold mb-6 text-green-800">
+        ¿Cómo funciona la energía eólica?
+      </h2>
+
+      <p class="text-lg leading-relaxed text-green-900">
+        Para aprovechar la energía del viento y transformarla en electricidad,
+        es necesario construir parques eólicos en zonas poco pobladas.
+        En estos parques se colocan aerogeneradores que transforman la energía
+        cinética en energía eléctrica.
+      </p>
+
+      <p
+        id="toggleTexto"
+        onclick="toggleDetalle()"
+        class="mt-6 text-green-700 font-semibold cursor-pointer hover:text-green-900 transition-colors duration-300"
+      >
+        Leer más ↓
+      </p>
+
+    </div>
+
+
+    <!-- DETALLE -->
+
+    <div
+      id="detalle"
+      class="bg-gradient-to-b from-white via-white to-green-200 p-6 rounded-2xl shadow-md mt-4 max-w-3xl mx-auto opacity-0 max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+    >
+
+      <h2 class="text-2xl font-semibold text-blue-700 mb-3">
+        Funcionamiento paso a paso
+      </h2>
+
+      <ul class="list-disc list-inside space-y-2 text-gray-800">
+
+        <li>
+          Una veleta detecta la dirección del viento para orientar el rotor.
+        </li>
+
+        <li>
+          Las aspas giran con vientos suaves y se detienen si exceden los 90 km/h.
+        </li>
+
+        <li>
+          El movimiento se transmite a un eje lento conectado al buje.
+        </li>
+
+        <li>
+          Una multiplicadora aumenta la velocidad para generar electricidad.
+        </li>
+
+        <li>
+          El generador convierte la energía cinética en energía eléctrica.
+        </li>
+
+        <li>
+          La corriente pasa de continua a alterna mediante un convertidor.
+        </li>
+
+        <li>
+          Un transformador eleva la tensión para su distribución.
+        </li>
+
+        <li>
+          La energía llega a una subestación para conectarse a la red eléctrica.
+        </li>
+
+      </ul>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       VENTAJAS
+       ===================================================== -->
+
+  <section id="ventajas" class="px-4 mt-20">
+
+    <h2 class="text-4xl font-extrabold text-center text-green-800 mb-10">
+      🌿 Ventajas de la Energía Eólica:
+      Poder del Viento con Elegancia Sustentable
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+      <!-- CARD 1 -->
+      <div class="bg-green-100 rounded-xl p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl">
+
+        <h4 class="text-xl font-bold text-green-800 mb-2">
+          💨 Energía renovable
+        </h4>
+
+        <p class="text-green-900">
+          El viento es una fuente natural, infinita y disponible en muchas regiones del mundo.
+        </p>
+
+      </div>
+
+
+      <!-- CARD 2 -->
+      <div class="bg-green-100 rounded-xl p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl">
+
+        <h4 class="text-xl font-bold text-green-800 mb-2">
+          🌱 Cero emisiones
+        </h4>
+
+        <p class="text-green-900">
+          No produce gases contaminantes ni contribuye al calentamiento global.
+        </p>
+
+      </div>
+
+
+      <!-- CARD 3 -->
+      <div class="bg-green-100 rounded-xl p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl">
+
+        <h4 class="text-xl font-bold text-green-800 mb-2">
+          📉 Coste operativo bajo
+        </h4>
+
+        <p class="text-green-900">
+          Una vez instalado, el mantenimiento y operación son relativamente económicos.
+        </p>
+
+      </div>
+
+
+      <!-- CARD 4 -->
+      <div class="bg-green-100 rounded-xl p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl">
+
+        <h4 class="text-xl font-bold text-green-800 mb-2">
+          🏞️ Integración territorial
+        </h4>
+
+        <p class="text-green-900">
+          Ideal para zonas rurales donde puede coexistir con agricultura o ganadería.
+        </p>
+
+      </div>
+
+
+      <!-- CARD 5 -->
+      <div class="bg-green-100 rounded-xl p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl">
+
+        <h4 class="text-xl font-bold text-green-800 mb-2">
+          ⚡ Menor dependencia energética
+        </h4>
+
+        <p class="text-green-900">
+          Disminuye la necesidad de importar combustibles fósiles y energía externa.
+        </p>
+
+      </div>
+
+
+      <!-- CARD 6 -->
+      <div class="bg-green-100 rounded-xl p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl">
+
+        <h4 class="text-xl font-bold text-green-800 mb-2">
+          🔧 Innovación tecnológica
+        </h4>
+
+        <p class="text-green-900">
+          Los aerogeneradores modernos son cada vez más eficientes y silenciosos.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       APLICACIONES
+       ===================================================== -->
+
+  <section
+    class="mt-16 pb-16 px-4"
+    id="aplicaciones"
+  >
+
+    <div
+      class="bg-gradient-to-b from-green-50 to-green-200 w-full max-w-[80%] mx-auto p-8 rounded-xl shadow-xl text-gray-800"
+    >
+
+      <h2 class="text-3xl sm:text-4xl font-bold text-center text-green-800 mb-6">
+        ¿Cuáles son las principales aplicaciones de la energía eólica?
+      </h2>
+
+
+      <!-- TARJETAS -->
+
+      <main class="flex justify-center items-center pt-8">
+
+        <div
+          class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-7xl transition-all duration-700 ease-in-out"
+        >
+
+          <!-- CARD 1 -->
+
+          <div
+            class="box box-1 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+            data-target="fotovoltaica"
+            data-text="Generación de electricidad"
+          >
+            <h1 class="text-xl sm:text-2xl md:text-4xl font-extrabold text-white drop-shadow-xl text-center px-4">
+            </h1>
+          </div>
+
+
+          <!-- CARD 2 -->
+
+          <div
+            class="box box-2 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+            data-target="termica"
+            data-text="Bombeo de agua"
+          >
+            <h1 class="text-xl sm:text-2xl md:text-4xl font-extrabold text-white drop-shadow-xl text-center px-4">
+            </h1>
+          </div>
+
+
+          <!-- CARD 3 -->
+
+          <div
+            class="box box-3 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+            data-target="pasiva"
+            data-text="Energía mecánica y térmica"
+          >
+            <h1 class="text-xl sm:text-2xl md:text-4xl font-extrabold text-white drop-shadow-xl text-center px-4">
+            </h1>
+          </div>
+
+
+          <!-- CARD 4 -->
+
+          <div
+            class="box box-4 cursor-pointer flex items-center justify-center relative h-[250px] sm:h-[300px] md:h-[400px]"
+            data-target="hibrida"
+            data-text="Transporte y sistemas híbridos"
+          >
+            <h1 class="text-xl sm:text-2xl md:text-4xl font-extrabold text-white drop-shadow-xl text-center px-4">
+            </h1>
+          </div>
+
+        </div>
+
+      </main>
+
+
+      <!-- =================================================
+           INFORMACIÓN DE LAS TARJETAS
+           ================================================= -->
+
+      <div class="mt-12 space-y-8">
+
+        <!-- APLICACIÓN 1 -->
+
+        <div
+          id="fotovoltaica"
+          class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+        >
+
+          <h3 class="text-2xl font-bold text-green-600 mb-4">
+            Generación de electricidad
+          </h3>
+
+          <p class="text-lg leading-relaxed">
+            Es la aplicación más común. Los parques eólicos utilizan
+            aerogeneradores para transformar la energía cinética del viento
+            en electricidad, abasteciendo hogares, industrias y ciudades enteras.
+          </p>
+
+        </div>
+
+
+        <!-- APLICACIÓN 2 -->
+
+        <div
+          id="termica"
+          class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+        >
+
+          <h3 class="text-2xl font-bold text-green-600 mb-4">
+            Bombeo de agua
+          </h3>
+
+          <p class="text-lg leading-relaxed">
+            Las aerobombas eólicas permiten extraer agua de pozos profundos,
+            especialmente útil en zonas rurales y agrícolas.
+            Pueden elevar hasta 500 litros por hora.
+          </p>
+
+        </div>
+
+
+        <!-- APLICACIÓN 3 -->
+
+        <div
+          id="pasiva"
+          class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+        >
+
+          <h3 class="text-2xl font-bold text-green-600 mb-4">
+            Energía mecánica y térmica
+          </h3>
+
+          <p class="text-lg leading-relaxed">
+            El viento puede accionar molinos para moler granos o generar calor
+            por rozamiento mecánico. También se usa en bombas de calor
+            para climatizar espacios.
+          </p>
+
+        </div>
+
+
+        <!-- APLICACIÓN 4 -->
+
+        <div
+          id="hibrida"
+          class="hidden bg-white p-6 rounded-xl shadow-lg text-gray-800"
+        >
+
+          <h3 class="text-2xl font-bold text-green-600 mb-4">
+            Transporte y sistemas híbridos
+          </h3>
+
+          <p class="text-lg leading-relaxed">
+            El viento impulsa embarcaciones como veleros y se combina con
+            otras fuentes como la solar o hidroeléctrica para crear sistemas
+            energéticos más eficientes.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer class="bg-gray-300 py-4 mt-10">
+
+    <div
+      class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
+    >
+
+      <p class="text-sm text-gray-500">
+        &copy; 2025 Energía Renovable. Todos los derechos reservados.
+      </p>
+
+      <div class="flex space-x-4 mt-2 md:mt-0">
+
+        <a
+          href="Pagina-principal.html"
+          class="text-gray-500 hover:text-green-400"
+        >
+          Inicio
+        </a>
+
+        <a
+          href="sobre-me.html"
+          class="text-gray-500 hover:text-green-400"
+        >
+          Sobre nosotros
+        </a>
+
+        <a
+          href="Form-final.html"
+          class="text-gray-500 hover:text-green-400"
+        >
+          Contacto
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script>
+
+    /* =========================================
+       MENÚ MÓVIL
+       ========================================= */
+
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("hidden");
+    });
+
+
+    /* =========================================
+       SUBMENÚ
+       ========================================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const submenu = document.getElementById("submenu");
+
+    menuBtn.addEventListener("click", (event) => {
+
+      event.stopPropagation();
+
+      submenu.classList.toggle("hidden");
+
+    });
+
+
+    /* Cerrar submenú al hacer clic fuera */
+
+    document.addEventListener("click", (event) => {
+
+      if (
+        !menuBtn.contains(event.target) &&
+        !submenu.contains(event.target)
+      ) {
+        submenu.classList.add("hidden");
+      }
+
+    });
+
+
+    /* =========================================
+       CERRAR MENÚ MÓVIL AL ELEGIR UNA PÁGINA
+       ========================================= */
+
+    const menuLinks = navMenu.querySelectorAll("a");
+
+    menuLinks.forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        if (window.innerWidth < 768) {
+          navMenu.classList.add("hidden");
+        }
+
+      });
+
+    });
+
+
+    /* =========================================
+       ANIMACIÓN DE LAS TARJETAS
+       ========================================= */
+
+    const container = document.querySelector(".container");
+    const boxes = container.querySelectorAll(".box");
+
+    const layouts = [
+      "6fr 1fr 1fr 1fr",
+      "1fr 6fr 1fr 1fr",
+      "1fr 1fr 6fr 1fr",
+      "1fr 1fr 1fr 6fr"
+    ];
+
+
+    boxes.forEach((box, index) => {
+
+      box.addEventListener("mouseenter", () => {
+
+        if (window.innerWidth >= 768) {
+          container.style.gridTemplateColumns = layouts[index];
+        }
+
+      });
+
+
+      box.addEventListener("mouseleave", () => {
+
+        if (window.innerWidth >= 768) {
+          container.style.gridTemplateColumns =
+            "1fr 1fr 1fr 1fr";
+        }
+
+      });
+
+    });
+
+
+    /* =========================================
+       MOSTRAR INFORMACIÓN DE LAS TARJETAS
+       ========================================= */
+
+    const cards = document.querySelectorAll(".box");
+
+    const detailSections = document.querySelectorAll(
+      "#fotovoltaica, #termica, #pasiva, #hibrida"
+    );
+
+
+    cards.forEach(card => {
+
+      card.addEventListener("click", () => {
+
+        const targetId = card.getAttribute("data-target");
+
+        detailSections.forEach(section => {
+          section.classList.add("hidden");
+        });
+
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+          targetSection.classList.remove("hidden");
+
+          targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }
+
+      });
+
+    });
+
+
+    /* =========================================
+       LEER MÁS / LEER MENOS
+       ========================================= */
+
+    let abierto = false;
+
+
+    function toggleDetalle() {
+
+      const detalle = document.getElementById("detalle");
+      const texto = document.getElementById("toggleTexto");
+
+
+      if (!abierto) {
+
+        detalle.classList.remove(
+          "opacity-0",
+          "max-h-0",
+          "overflow-hidden"
+        );
+
+        detalle.classList.add(
+          "opacity-100",
+          "max-h-[1000px]"
+        );
+
+        texto.innerHTML = "Leer menos ↑";
+
+        abierto = true;
+
+      } else {
+
+        detalle.classList.remove(
+          "opacity-100",
+          "max-h-[1000px]"
+        );
+
+        detalle.classList.add(
+          "opacity-0",
+          "max-h-0",
+          "overflow-hidden"
+        );
+
+        texto.innerHTML = "Leer más ↓";
+
+        abierto = false;
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

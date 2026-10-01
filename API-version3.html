@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Carousel Responsive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    body { overflow: visible; }
+    .box {
+      transform-style: preserve-3d;
+      transition: 1.5s;
+      transform: perspective(1200px) rotateY(0deg);
+      perspective-origin: center;
+    }
+    .box span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 250px;
+      height: 300px;
+      transform-origin: center;
+      transform-style: preserve-3d;
+      -webkit-box-reflect: below 0px linear-gradient(transparent,#0004);
+    }
+  </style>
+</head>
+
+<body class="relative flex flex-col items-center justify-center min-h-screen overflow-visible bg-black">
+
+  <!-- Título -->
+  <div>
+    <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold text-white rounded-xl mb-8 mt-16 text-center">
+      Datos de Cliente
+    </h1>
+  </div>
+
+  <!-- Imagen de fondo -->
+  <div class="absolute inset-0 -z-20">
+    <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=1920&q=80"
+         alt="Fondo"
+         class="w-full h-full object-cover brightness-50" />
+  </div>
+
+  <!-- Partículas -->
+  <div id="particles-js" class="absolute inset-0 -z-10"></div>
+
+  <!-- Carrusel 3D solo para pantallas medianas en adelante -->
+  <div class="hidden sm:flex relative items-center justify-center w-full h-full">
+    <div id="carousel" class="box w-full max-w-[800px] h-[600px] md:h-[800px]"></div>
+  </div>
+
+  <!-- Lista vertical alternativa para móviles -->
+  <div id="mobile-list" class="flex sm:hidden flex-col gap-4 px-6 py-8 w-full max-w-xl z-10"></div>
+
+  <!-- Botones de navegación solo visibles en pantallas grandes -->
+  <div class="hidden sm:flex absolute bottom-12 md:bottom-24 gap-8 z-10">
+    <div class="btn prev w-12 h-12 sm:w-14 sm:h-14 border-2 border-white rounded-full flex items-center justify-center cursor-pointer bg-white/10 backdrop-blur-md">
+      <div class="w-4 h-4 border-t-2 border-r-2 border-white transform rotate-[225deg] translate-x-[-2px] translate-y-[2px]"></div>
+    </div>
+    <div class="btn next w-12 h-12 sm:w-14 sm:h-14 border-2 border-white rounded-full flex items-center justify-center cursor-pointer bg-white/10 backdrop-blur-md">
+      <div class="w-4 h-4 border-t-2 border-r-2 border-white transform rotate-[45deg] translate-x-[-2px] translate-y-[2px]"></div>
+    </div>
+  </div>
+
+  <div class="mt-10 text-center mb-8">
+  <a href="Pagina-principal.html" target="_blank"
+     class="px-6 py-3 bg-gradient-to-r from-blue-500 via-gray-500 to-gray-500 
+            text-white font-semibold text-lg rounded-full shadow-lg 
+            hover:scale-105 transform transition-transform duration-300 
+            hover:shadow-xl">
+    ⬅️ Volver a la página principal
+  </a>
+</div>
+
+
+  <!-- Script rotación carrusel -->
+  <script>
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    const box = document.querySelector('.box');
+    let degrees = 0;
+    if (box) {
+      prev.addEventListener('click', () => {
+        degrees += 45;
+        box.style.transform = `perspective(1200px) rotateY(${degrees}deg)`;
+      });
+      next.addEventListener('click', () => {
+        degrees -= 45;
+        box.style.transform = `perspective(1200px) rotateY(${degrees}deg)`;
+      });
+    }
+  </script>
+
+  <!-- Script cargar usuarios -->
+  <script>
+    const carousel = document.getElementById("carousel");
+    const mobileList = document.getElementById("mobile-list");
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((users) => {
+        const angleStep = 360 / users.length;
+
+        users.forEach((user, index) => {
+          // Tarjeta 3D
+          const span = document.createElement("span");
+          span.style.transform = `rotateY(${angleStep * index}deg) translateZ(500px) translateY(-50%)`;
+          span.innerHTML = `
+            <div class="w-[320px] sm:w-[250px] h-[260px] sm:h-[300px] bg-white/80 rounded-lg p-4 flex flex-col justify-center text-black shadow-lg hover:shadow-2xl transition">
+              <a href="usuario.html?id=${user.id}" class="block">
+                <h2 class="text-lg sm:text-xl font-bold text-white bg-sky-900 px-2 py-1 rounded mb-2 shadow-2xl">${user.name}</h2>
+                <p><strong>Usuario:</strong> ${user.username}</p>
+                <p><strong>Email:</strong> ${user.email}</p>
+                <p><strong>Ciudad:</strong> ${user.address.city}</p>
+                <p><strong>Empresa:</strong> ${user.company.name}</p>
+              </a>
+            </div>
+          `;
+          if (carousel) carousel.appendChild(span);
+
+          // Tarjeta móvil
+          const card = document.createElement("div");
+          card.innerHTML = span.innerHTML;
+          if (mobileList) mobileList.appendChild(card);
+        });
+      });
+  </script>
+
+  <!-- Configuración partículas -->
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 50 },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.2 },
+        size: { value: 3 },
+        move: { speed: 1 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: 'repulse' },
+          onclick: { enable: true, mode: 'push' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

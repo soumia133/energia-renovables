@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Energía</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #imagen1 {
+      position: relative;
+      top: -40px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- Header -->
+<header class="flex flex-wrap items-center justify-between px-6 py-4 fixed w-full z-20 shadow bg-gray-300">
+  <div class="text-2xl font-bold text-green-600">
+    <!-- Logo o nombre del sitio -->
+    <img src="logo3.png" alt="Logo" class="w-[130px] ml-[120px]">
+  </div>
+
+  <!-- Botón para menú en móvil -->
+  <button class="md:hidden block text-gray-500 hover:text-green-400" onclick="document.getElementById('navMenu').classList.toggle('hidden')">
+    ☰
+  </button>
+
+  <!-- Menú de navegación -->
+  <nav id="navMenu" class="w-full md:w-auto md:flex hidden flex-col md:flex-row gap-6 mt-4 md:mt-0 items-center">
+    <ul class="flex flex-col md:flex-row gap-6 items-center w-full md:w-auto">
+      <li><a href="Pagina-principal.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Inicio</a></li>
+      <li><a href="energia-no-renovable.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Energía fósil</a></li>
+      <li><a href="PaginaEnergiaRenovable.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Energía renovable</a></li>
+      <li class="relative group">
+        <button id="menuBtn" class="hover:text-green-400 transition text-gray-500 focus:outline-none text-xl">
+          Tipos de energías renovables ▾
+        </button>
+        <ul id="submenu" class="hidden group-hover:block absolute bg-gray-300 text-white mt-2 rounded shadow-md w-52 z-10">
+          <li><a href="solar.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía solar</a></li>
+          <li><a href="eolica-final.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía eólica</a></li>
+          <li><a href="hidro.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía hidráulica & Bioenergía</a></li>
+        </ul>
+      </li>
+      <li><a href="API-version3.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">API</a></li>
+      <li><a href="ej-grafica2.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Dashboard</a></li>
+      <li><a href="Form-final.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Hero Image -->
+  <div class="relative w-full">
+    <img src="imagenIndex/Contaminacion-ambiental-el-verdadero-impacto-en-nuestra-salud-Pituche-min.jpg" alt="Contaminación" class="w-full max-w-7xl h-auto mx-auto rounded shadow-lg" />
+    <div class="absolute top-[87%] left-1/2 transform -translate-x-1/2 text-gray-800 text-center bg-white/70 p-4 rounded-full w-[90%] max-w-[600px] drop-shadow-2xl">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-gray-500">Transición Energética:</h1>
+      <p class="py-2 text-base md:text-lg">El Camino hacia un Futuro Sostenible</p>
+    </div>
+  </div>
+<!-- Tipos de Energía -->
+<section class="flex justify-center py-20 md:py-32 px-4">
+  <div class="flex flex-col items-center space-y-10 md:space-y-20 bg-gray-100 w-full max-w-7xl rounded-2xl p-6 md:p-10">
+    <h1 class="text-4xl md:text-7xl text-gray-500 font-extrabold drop-shadow-2xl text-center">Tipos de Energía</h1>
+    <p class="text-center text-base md:text-lg leading-relaxed">
+      Las fuentes de energía son recursos que existen en la naturaleza y que el ser humano ha aprendido a utilizar para facilitar su vida. <br>
+      Las energías <strong>no renovables</strong> provienen de fuentes limitadas y se agotan con su uso. <br>
+      En cambio, las energías <strong>renovables</strong> se regeneran constantemente gracias a fenómenos naturales.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+      <!-- Card 1 -->
+      <a href="energia-no-renovable.html" class="block">
+        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition">
+          <img src="imagenIndex/energias-no-renovable.webp" alt="Energía No Renovable" class="w-full h-[200px] md:h-[300px] object-cover rounded mb-4">
+          <h2 class="text-xl md:text-2xl font-semibold text-green-600">Energía No Renovable</h2>
+          <p class="text-gray-700 mt-2">Fuentes limitadas que una vez consumidas no pueden sustituirse.</p>
+          <div class="flex flex-col items-center space-y-2 my-4">
+            <div class="w-2 h-20 bg-gray-500 rounded"></div>
+            <div class="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-500"></div>
+          </div>
+          <p class="text-gray-500 text-xl md:text-3xl font-extrabold text-center">Recurso limitado</p>
+        </div>
+      </a>
+      <!-- Card 2 -->
+      <a href="PaginaEnergiaRenovable.html" target="_blank" class="block">
+        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition">
+          <img src="imagenIndex/Energia renovable.jpg" alt="Energía Renovable" class="w-full h-[200px] md:h-[300px] object-cover rounded mb-4">
+          <h2 class="text-xl md:text-2xl font-semibold text-green-600">Energía Renovable</h2>
+          <p class="text-gray-700 mt-2">Fuentes naturales inagotables o que se regeneran con facilidad.</p>
+          <div class="flex flex-col items-center space-y-2 my-4">
+            <div class="w-2 h-20 bg-gray-500 rounded"></div>
+            <div class="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-500"></div>
+          </div>
+          <p class="text-gray-500 text-xl md:text-3xl font-extrabold text-center">Recurso sostenible</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ¿Qué es la transición energética? -->
+<section class="flex flex-col md:flex-row md:items-start justify-center py-20 md:py-32 px-4 md:px-0 mx-auto gap-20 max-w-7xl">
+  <!-- Columna Izquierda -->
+  <div class="flex flex-col w-full md:w-2/5">
+    <!-- Raya degradada -->
+    <div class="w-40 h-1 bg-gradient-to-r from-green-600 to-blue-400 mb-6 rounded"></div>
+
+    <!-- Texto -->
+    <p class="text-left text-base md:text-lg">
+      La transición energética es el conjunto de cambios en los modelos de producción,
+      distribución y consumo de la energía para evitar las emisiones de gases de efecto invernadero.
+    </p>
+  </div>
+
+  <!-- Columna Derecha -->
+  <div class="flex flex-col w-full md:w-3/5">
+    <h1 class="text-3xl md:text-5xl font-bold text-gray-500 text-left my-4">
+      ¿Qué es la transición energética?
+    </h1>
+    <p class="text-base md:text-lg space-y-4">
+      El principal causante del cambio climático es el efecto invernadero. Determinados gases presentes en la atmósfera retienen parte de la radiación térmica emitida por la superficie terrestre, provocando el calentamiento global. <br>
+      Muchos de esos gases de efecto invernadero están presentes de forma natural; sin embargo, la actividad humana ha provocado que aumente la concentración de algunos de ellos en la atmósfera, sobre todo el dióxido de carbono (CO₂). <br>
+      El objetivo de este cambio es transformar el sistema energético, potenciando las energías renovables, la economía circular y otras formas de reducción de emisiones. <br>
+      Este movimiento implica concienciar sobre el consumo responsable y sostenible de la energía, así como establecer pautas de eficiencia energética a través de la electrificación y digitalización de todos los procesos y sectores de la economía.
+    </p>
+  </div>
+</section>
+
+<!-- Claves para la descarbonización -->
+<section class="flex justify-center py-20 md:py-32 px-4">
+  <div class="flex flex-col items-center space-y-10 md:space-y-20 bg-gray-100 w-full max-w-7xl rounded-2xl p-6 md:p-10">
+    <h1 class="text-3xl md:text-5xl text-gray-500 font-extrabold drop-shadow-2xl text-center">Las claves para lograr la descarbonización</h1>
+    <p class="text-center text-base md:text-lg leading-relaxed">
+      El cambio hacia un modelo de producción de energía más sostenible no consiste en el abandono de las fuentes fósiles, 
+      indispensables en ámbitos tan relevantes como el transporte aéreo o la industria naval. Así, entre las acciones que contemplan la transición energética se encuentran las siguientes:
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+      <!-- Card 1 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition">
+        <img src="imagenIndex/CO2_v02.svg" alt="GEI" class="rounded mb-4 w-[100px] h-auto mx-auto">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-600 text-center">Reducción de emisiones GEI</h2>
+        <p class="text-gray-700 mt-2 text-center">Promover el uso de nuevos combustibles más sostenibles como los combustibles sintéticos o los biocombustibles.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition">
+        <img src="imagenIndex/EFICIENCIA_ENERGETICA.svg" alt="Renovables" class="rounded mb-4 w-[100px] h-auto mx-auto">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-600 text-center">Uso de energías renovables</h2>
+        <p class="text-gray-700 mt-2 text-center">Impulsar la generación eléctrica de bajo carbono y fomentar la electrificación de los principales sectores de la economía.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition">
+        <img src="imagenIndex/ENERGIA_RENOV.svg" alt="Eficiencia" class="rounded mb-4 w-[100px] h-auto mx-auto">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-600 text-center">Mejora la eficiencia energética</h2>
+        <p class="text-gray-700 mt-2 text-center">Tanto de las empresas como de la sociedad, fomentando la reducción de su huella de carbono.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition">
+        <img src="imagenIndex/tecnologia-bombilla-icono.avif" alt="Innovación" class="rounded mb-4 w-[100px] h-auto mx-auto">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-600 text-center">Innovación tecnológica</h2>
+        <p class="text-gray-700 mt-2 text-center">Incentivar la investigación y el desarrollo de tecnologías limpias para acelerar la transición energética.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-300 py-4 mt-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-sm text-gray-500">&copy; 2025 Energía Renovable. Todos los derechos reservados.</p>
+      <div class="flex space-x-4 mt-2 md:mt-0">
+        <a href="Pagina-principal.html" class="text-gray-500 hover:text-green-400">Inicio</a>
+        <a href="sobre-me.html" class="text-gray-500 hover:text-green-400">Sobre nosotros</a>
+        <a href="Form-final.html" class="text-gray-500 hover:text-green-400">Contacto</a>
+      </div>
+    </div>
+  </footer>
+ 
+
+  <!-- Script menú desplegable -->
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const submenu = document.getElementById("submenu");
+    btn.addEventListener("click", () => submenu.classList.toggle("hidden"));
+    document.addEventListener("click", function(e) {
+      if (!btn.contains(e.target) && !submenu.contains(e.target)) {
+        submenu.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>
+
+

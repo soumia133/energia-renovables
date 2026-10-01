@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Energías</title>
+
+  <!-- Chart.js y plugin de datalabels -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Estilo adicional para animaciones del gráfico -->
+  <style>
+    .scale-chart {
+      transition: transform 0.5s ease-in-out;
+    }
+    .scale-up {
+      transform: scale(1.05);
+    }
+    #linkCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      pointer-events: none;
+    }
+
+      #container {
+    background-color: #eff6ff; /* sky-50 */
+    border-radius: 12px;       /* borde redondeado */
+    border: 1px solid #eff6ff;     /* borde rojo */
+    padding: 10px;             /* opcional para separar el borde del gráfico */
+    width: 4000px;
+  }
+  </style>
+</head>
+<body class="bg-sky-50 text-gray-800 font-sans">
+<!-- Header -->
+<header class="flex flex-wrap items-center justify-between px-6 py-4 fixed w-full z-20 shadow bg-gray-300">
+  <div class="text-2xl font-bold text-green-600">
+    <!-- Logo o nombre del sitio -->
+    <img src="logo3.png" alt="Logo" class="w-[130px] ml-[120px]">
+  </div>
+
+  <!-- Botón para menú en móvil -->
+  <button class="md:hidden block text-gray-500 hover:text-green-400" onclick="document.getElementById('navMenu').classList.toggle('hidden')">
+    ☰
+  </button>
+
+  <!-- Menú de navegación -->
+  <nav id="navMenu" class="w-full md:w-auto md:flex hidden flex-col md:flex-row gap-6 mt-4 md:mt-0 items-center">
+    <ul class="flex flex-col md:flex-row gap-6 items-center w-full md:w-auto">
+      <li><a href="Pagina-principal.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Inicio</a></li>
+      <li><a href="energia-no-renovable.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Energía fósil</a></li>
+      <li><a href="PaginaEnergiaRenovable.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Energía renovable</a></li>
+      <li class="relative group">
+        <button id="menuBtn" class="hover:text-green-400 transition text-gray-500 focus:outline-none text-xl">
+          Tipos de energías renovables ▾
+        </button>
+        <ul id="submenu" class="hidden group-hover:block absolute bg-gray-300 text-white mt-2 rounded shadow-md w-52 z-10">
+          <li><a href="solar.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía solar</a></li>
+          <li><a href="eolica-final.htm" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía eólica</a></li>
+          <li><a href="hidro.html" target="_blank" class="block px-4 py-2 text-gray-500 hover:bg-green-600 text-lg">Energía hidráulica & Bioenergía</a></li>
+        </ul>
+      </li>
+      <li><a href="API-version3.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">API</a></li>
+      <li><a href="ej-grafica2.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Dashboard</a></li>
+      <li><a href="Form-final.html" target="_blank" class="hover:text-green-400 text-gray-500 transition text-xl">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="relative">
+  <img src="imagen-dashboard/images.jpg" alt="" class="w-full h-[1000px] w-[80%] sm:h-[400px] md:h-[500px] object-cover">
+
+  <!-- Grid encima de la imagen -->
+  <div class="absolute inset-0 grid grid-cols-2 grid-rows-2">
+    <div class="bg-green-500/50 border-4 border-white"></div>
+    <div class="bg-gray-500/50 border-4 border-white"></div>
+    <div class="bg-gray-500/50 border-4 border-white"></div>
+    <div class="bg-green-500/50 border-4 border-white"></div>
+  </div>
+
+  <!-- Título bonito y centrado -->
+  <h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10
+              text-3xl sm:text-4xl lg:text-6xl font-extrabold text-green-800 text-center
+              bg-white/70 px-4 sm:px-8 py-2 sm:py-4 rounded-lg shadow-lg">
+    Dashboard de Energía Sostenible
+  </h1>
+</section>
+
+
+  <section class="min-h-screen w-full flex flex-col items-center justify-center px-6 py-12 bg-gradient-to-b from-sky-50 to-green-50">
+  <div>
+    <div class="flex items-center justify-center w-full max-w-5xl">
+      <canvas id="linkCanvas" class="w-full h-[300px] sm:h-[400px] rounded-xl shadow-lg ring-1 ring-sky-100"></canvas>
+    </div>
+
+    <div class="relative flex flex-col items-center p-6 sm:p-8 bg-white shadow-2xl rounded-2xl ring-1 ring-sky-100 mt-16 max-w-5xl mx-auto">
+      <h2 class="absolute -top-5 shadow-xl p-4 bg-gradient-to-b from-white via-white to-sky-100 text-xl sm:text-2xl lg:text-3xl font-bold text-center">
+        📊 Evolución y Contaminación por Energía No Renovable
+      </h2>
+
+      <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-6 text-center mt-12 max-w-prose">
+        En España, el uso de energías no renovables ha mostrado una tendencia a la disminución en los últimos años,
+        aunque siguen siendo una parte significativa del mix energético. La dependencia de combustibles fósiles como
+        el petróleo, el gas natural y el carbón ha ido reduciéndose gradualmente, dando paso a un aumento en
+        la participación de las energías renovables.
+      </p>
+
+      <div class="bg-sky-50 shadow-xl rounded-xl p-4 sm:p-8 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start w-full max-w-5xl mx-auto overflow-x-auto">
+        <!-- Gráfica principal -->
+        <div class="w-full lg:w-7/10 min-w-[300px]">
+          <canvas id="energyLineChart" class="w-full h-[400px] sm:h-[500px] lg:h-[600px] rounded-lg shadow-md ring-1 ring-gray-200"></canvas>
+        </div>
+        <!-- Gráfica secundaria -->
+        <div class="w-full lg:w-3/10 min-w-[250px]">
+          <canvas id="pollutionChart" class="w-full h-[400px] sm:h-[500px] lg:h-[600px] rounded-lg shadow-md ring-1 ring-gray-200"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section class="min-h-screen w-full flex flex-col items-center justify-center px-6 py-12 bg-gradient-to-b from-sky-50 to-green-50">
+  <div class="relative flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 bg-white shadow-2xl rounded-2xl ring-1 ring-sky-100 max-w-7xl w-full mx-auto">
+    <!-- Título sobre el borde -->
+    <h1 class="absolute -top-8 bg-gradient-to-b from-white via-white to-sky-100 p-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-gray-800 w-full max-w-3xl mx-auto">
+      ⚡ Energías Renovables en España
+    </h1>
+
+    <!-- Descripción -->
+    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-8 text-center max-w-3xl mt-20 px-2">
+      En España, las energías renovables más destacadas son la eólica, la solar (fotovoltaica y termoeléctrica) y 
+      la hidráulica. La energía eólica lidera la producción, seguida de cerca por la solar, mientras que la hidráulica 
+      también juega un papel importante.
+    </p>
+
+    <!-- Tarjetas de energías -->
+    <section class="flex flex-wrap justify-center gap-6 mb-10 w-full max-w-4xl px-2">
+      <div id="solarCard" class="bg-sky-50 shadow-lg rounded-xl p-6 w-40 sm:w-48 md:w-52 text-center hover:scale-105 transition-transform cursor-pointer">
+        <span class="text-yellow-400 text-4xl mb-2">☀️</span>
+        <h2 class="text-2xl sm:text-xl md:text-2xl font-semibold mb-2">Solar</h2>
+        <p id="solar" class="text-lg font-medium text-green-600">–</p>
+      </div>
+      <div class="bg-sky-50 shadow-lg rounded-xl p-6 w-40 sm:w-48 md:w-52 text-center hover:scale-105 transition-transform">
+        <span class="text-blue-400 text-4xl mb-2">💨</span>
+        <h2 class="text-2xl sm:text-xl md:text-2xl font-semibold mb-2">Eólica</h2>
+        <p id="eolica" class="text-lg font-medium text-green-600">–</p>
+      </div>
+      <div class="bg-sky-50 shadow-lg rounded-xl p-6 w-40 sm:w-48 md:w-52 text-center hover:scale-105 transition-transform">
+        <span class="text-green-400 text-4xl mb-2">💧</span>
+        <h2 class="text-2xl sm:text-xl md:text-2xl font-semibold mb-2">Hidroeléctrica</h2>
+        <p id="hidro" class="text-lg font-medium text-green-600">–</p>
+      </div>
+      <div class="bg-sky-50 shadow-lg rounded-xl p-6 w-40 sm:w-48 md:w-52 text-center hover:scale-105 transition-transform">
+        <span class="text-purple-400 text-4xl mb-2">🌿</span>
+        <h2 class="text-2xl sm:text-xl md:text-2xl font-semibold mb-2">Biomasa</h2>
+        <p id="biomasa" class="text-lg font-medium text-green-600">–</p>
+      </div>
+    </section>
+
+    <!-- Gráfico -->
+    <div class="bg-sky-50 shadow-xl rounded-2xl p-6 max-w-6xl mx-auto w-full">
+      <canvas id="energyChart" class="w-full h-[350px] sm:h-[450px] md:h-[500px] lg:h-[550px] rounded-lg"></canvas>
+    </div>
+  </div>
+</section>
+<!-- Comparativa de Energía Renovable en Europa -->
+<section class="bg-gradient-to-b from-sky-50 to-green-50 min-h-screen p-6 sm:p-12 mt-20 flex items-center justify-center">
+  <div class="relative flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 bg-white shadow-2xl rounded-2xl ring-1 ring-sky-100 max-w-5xl w-full mx-auto">
+    <h1 class="absolute -top-8 bg-gradient-to-b from-white via-white to-sky-100 p-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-gray-800 w-full max-w-3xl mx-auto">
+      Energía Renovable en Europa
+    </h1>
+
+    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-8 text-center mt-20 max-w-3xl px-2">
+      En Europa, la energía hidroeléctrica, eólica y solar son las fuentes renovables más utilizadas. 
+      Alemania y España lideran la capacidad instalada de energías renovables, especialmente en energía solar. 
+    </p>
+
+    <div id="container" class="w-full max-w-4xl h-[350px] sm:h-[450px] md:h-[500px] lg:h-[550px] mt-10 rounded-lg shadow-inner ring-1 ring-sky-200 overflow-hidden"></div>
+  </div>
+</section>
+<!-- Uso de Energías Renovables en Europa -->
+<section class="bg-gradient-to-b from-sky-50 to-green-50 min-h-screen p-6 sm:p-10 mt-20 flex items-center justify-center">
+  <div class="relative flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 bg-white shadow-2xl rounded-2xl ring-1 ring-sky-100 max-w-5xl w-full mx-auto">
+    <h1 class="absolute -top-8 bg-gradient-to-b from-white via-white to-sky-100 p-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-gray-800 w-full max-w-3xl mx-auto">
+      🔋 Uso de Energías Renovables en Europa
+    </h1>
+
+    <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-8 text-center mt-20 max-w-3xl px-2">
+      En Europa, la proporción de energías renovables varía significativamente entre países, con Dinamarca liderando en energía eólica 
+      y países nórdicos como Suecia y Noruega destacando en el uso general de renovables. España, por su parte, ha aumentado su capacidad 
+      renovable, especialmente en energía solar y eólica, situándose como un actor relevante en la transición energética. 
+    </p>
+
+    <canvas id="stackedChart" class="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] rounded-lg shadow-inner ring-1 ring-sky-200 mt-10"></canvas>
+  </div>
+</section>
+
+<footer class="bg-gray-300 py-4 mt-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-sm text-gray-500">&copy; 2025 Energía Renovable. Todos los derechos reservados.</p>
+      <div class="flex space-x-4 mt-2 md:mt-0">
+        <a href="Pagina-principal.html" class="text-gray-500 hover:text-green-400">Inicio</a>
+        <a href="sobre-me.html" class="text-gray-500 hover:text-green-400">Sobre nosotros</a>
+        <a href="Form-final.html" class="text-gray-500 hover:text-green-400">Contacto</a>
+      </div>
+    </div>
+  </footer>
+ 
+  <script>
+    //grafica lineal
+    const linkCanvas = document.getElementById('linkCanvas');
+  const linkCtx = linkCanvas.getContext('2d');
+
+  function resizeCanvas() {
+    linkCanvas.width = window.innerWidth;
+    linkCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let sourcePoint = null;
+  let targetPoint = null;
+
+  // ⚡️ Gráfico de líneas
+  const ctx = document.getElementById('energyLineChart').getContext('2d');
+  const energyChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+      datasets: [{
+        label: 'Uso de Energía No Renovable (TWh)',
+        data: [9400,9300,9200,9100,8900,8700,8500,8200,7900,7600,7100,6900,6700,6600,6450],
+        borderColor: '#ef4444',
+        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+        borderWidth: 3,
+        tension: 0.3,
+        pointRadius: 5,
+        pointBackgroundColor: '#dc2626',
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      animation: { duration: 1500, easing: 'easeOutQuart' },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Tendencia de uso energético no renovable en los últimos años',
+          font: { size: 18 }
+        },
+        legend: { position: 'bottom' }
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: { display: true, text: 'Teravatios hora (TWh)' }
+        },
+        x: {
+          title: { display: true, text: 'Año' }
+        }
+      }
+    },
+    plugins: [{
+      afterDatasetsDraw: chart => {
+        const meta = chart.getDatasetMeta(0);
+        const index = chart.data.labels.indexOf('2024');
+        const point = meta.data[index];
+
+        if (point) {
+          const rect = chart.canvas.getBoundingClientRect();
+          sourcePoint = {
+            x: rect.left + point.x,
+            y: rect.top + point.y
+          };
+
+          // 🫧 Efecto pulsante
+          const pulseRadius = 14 + Math.sin(Date.now() / 200) * 4;
+          chart.ctx.save();
+          chart.ctx.beginPath();
+          chart.ctx.arc(point.x, point.y, pulseRadius, 0, 2 * Math.PI);
+          chart.ctx.fillStyle = 'rgba(96,165,250,0.6)';
+          chart.ctx.fill();
+          chart.ctx.restore();
+        }
+
+        requestAnimationFrame(drawGlobalArrow);
+      }
+    }]
+  });
+
+  // 🌍 Gráfico circular
+  const ctx1 = document.getElementById('pollutionChart').getContext('2d');
+  const contaminationLabels = ['Carbón', 'Petróleo', 'Gas Natural', 'Nuclear'];
+  const contaminationValues = [450, 320, 280, 100];
+
+  const pollutionChart = new Chart(ctx1, {
+    type: 'pie',
+    data: {
+      labels: contaminationLabels,
+      datasets: [{
+        data: contaminationValues,
+        backgroundColor: ['#1f2937', '#f94144', '#f59e0b', '#10b981'],
+        borderColor: '#fff',
+        borderWidth: 2,
+        hoverOffset: 40
+      }]
+    },
+    options: {
+      responsive: true,
+      animation: { animateScale: true, animateRotate: true, duration: 1200 },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Distribución de Contaminación por Fuente de Energía No Renovable',
+          font: { size: 20 }
+        },
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 14 } }
+        },
+        datalabels: {
+          color: '#fff',
+          font: { weight: 'bold', size: 16 },
+          formatter: value => `${value} t CO₂`
+        }
+      }
+    },
+    plugins: [ChartDataLabels]
+  });
+
+  function updateTargetPoint() {
+    const targetRect = document.getElementById('pollutionChart').getBoundingClientRect();
+
+    // 🧭 Posiciona justo antes del gráfico circular
+    targetPoint = {
+      x: targetRect.left ,    // <-- Modifica este valor para acercar o alejar en X
+      y: targetRect.top + targetRect.height / 3  // <-- Modifica este valor para subir o bajar en Y
+    };
+  }
+  updateTargetPoint();
+  window.addEventListener('resize', updateTargetPoint);
+
+  // 🎯 Flecha mejorada
+  function drawGlobalArrow() {
+    if (!sourcePoint || !targetPoint) return;
+
+    linkCtx.clearRect(0, 0, linkCanvas.width, linkCanvas.height);
+
+    // 🌈 Degradado elegante
+    const gradient = linkCtx.createLinearGradient(sourcePoint.x, sourcePoint.y, targetPoint.x, targetPoint.y);
+    gradient.addColorStop(0, '#38bdf8');
+    gradient.addColorStop(0.5, '#3b82f6');
+    gradient.addColorStop(1, '#1e3a8a');
+
+    linkCtx.lineWidth = 6;
+    linkCtx.strokeStyle = gradient;
+    linkCtx.shadowColor = 'rgba(59,130,246,0.4)';
+    linkCtx.shadowBlur = 10;
+
+    // 💫 Curva suave
+    linkCtx.beginPath();
+    linkCtx.moveTo(sourcePoint.x, sourcePoint.y);
+    linkCtx.quadraticCurveTo(
+      (sourcePoint.x + targetPoint.x) / 2,
+      sourcePoint.y - 80,
+      targetPoint.x, targetPoint.y
+    );
+    linkCtx.stroke();
+
+    // 🔽 Cabeza estilizada
+    const angle = Math.atan2(targetPoint.y - sourcePoint.y, targetPoint.x - sourcePoint.x);
+    const arrowLength = 50;   // <-- Cambia este valor para hacer la cabeza más grande o pequeña
+    linkCtx.beginPath();
+    linkCtx.moveTo(targetPoint.x, targetPoint.y);
+    linkCtx.lineTo(
+      targetPoint.x - arrowLength * Math.cos(angle - Math.PI / 7),
+      targetPoint.y - arrowLength * Math.sin(angle - Math.PI / 7)
+    );
+    linkCtx.lineTo(
+      targetPoint.x - arrowLength * Math.cos(angle + Math.PI / 7),
+      targetPoint.y - arrowLength * Math.sin(angle + Math.PI / 7)
+    );
+    linkCtx.closePath();
+    linkCtx.fillStyle = gradient;
+    linkCtx.fill();
+
+    requestAnimationFrame(drawGlobalArrow);
+  }
+
+    // 💡 Datos de producción (gráfico de barras)
+    const solar = 150;
+    const eolica = 120;
+    const hidro = 100;
+    const biomasa = 80;
+
+    document.getElementById('solar').textContent = `${solar} kWh`;
+    document.getElementById('eolica').textContent = `${eolica} kWh`;
+    document.getElementById('hidro').textContent = `${hidro} kWh`;
+    document.getElementById('biomasa').textContent = `${biomasa} kWh`;
+
+    const ctx2 = document.getElementById('energyChart').getContext('2d');
+
+    const baseColors = ['#facc15', '#38bdf8', '#4ade80', '#a855f7'];
+    const hoverColors = ['#fde047', '#0ea5e9', '#22c55e', '#c084fc'];
+
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['Solar', 'Eólica', 'Hidroeléctrica', 'Biomasa'],
+        datasets: [{
+          label: 'Producción (kWh)',
+          data: [solar, eolica, hidro, biomasa],
+          backgroundColor: ['#facc15', '#38bdf8', '#4ade80', '#a855f7'],
+          borderRadius: 8,
+          hoverBackgroundColor: ['#fde047', '#0ea5e9', '#22c55e', '#c084fc']
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: {
+          duration: 1000,
+          easing: 'easeOutQuint'
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Comparativa de Producción Energética Renovable',
+            font: { size: 20 }
+          },
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'kWh',
+              font: { size: 14 }
+            }
+          }
+        },
+        hover: {
+          mode: 'dataset',
+          animationDuration: 400
+        }
+      }
+    });
+
+    // 🔍 Efecto al pasar el ratón sobre la tarjeta solar: agranda ambos gráficos
+    const solarCard = document.getElementById('solarCard');
+    const canvasPollution = document.getElementById('pollutionChart');
+    const canvasEnergy = document.getElementById('energyChart');
+
+    solarCard.addEventListener('mouseenter', () => {
+      canvasPollution.classList.add('scale-up');
+      canvasEnergy.classList.add('scale-up');
+    });
+
+    solarCard.addEventListener('mouseleave', () => {
+      canvasPollution.classList.remove('scale-up');
+      canvasEnergy.classList.remove('scale-up');
+    });
+
+    //Comparativa de Energía Renovable en Europa
+    Highcharts.chart('container', {
+      chart: {
+        type: 'pie',
+        options3d: {
+          enabled: true,
+          alpha: 45,
+          beta: 0
+        },
+        backgroundColor: '#ffffff',
+      },
+      title: {
+        text: 'Uso de Energía Renovable por País en Europa'
+      },
+      subtitle: {
+        text: 'Proporción relativa de energías renovables'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
+      },
+      tooltip: {
+        pointFormat: '<b>{point.percentage:.1f}%</b> ({point.y} TWh)'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          depth: 45,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.percentage:.1f} %'
+          }
+        }
+      },
+      series: [{
+        name: 'Energía Renovable',
+        data: [
+          ['Suecia', 60],
+          ['Noruega', 55],
+          ['Finlandia', 50],
+          ['Alemania', 35],
+          ['España', 40],
+          ['Francia', 30],
+          ['Italia', 28]
+        ]
+      }]
+    });
+
+    Highcharts.chart('container', {
+      chart: {
+        type: 'pie',
+        options3d: {
+          enabled: true,
+          alpha: 45,
+          beta: 0
+        },
+        backgroundColor: '#eff6ff',
+      },
+      title: {
+        text: 'Uso de Energía Renovable por País en Europa'
+      },
+      subtitle: {
+        text: 'Proporción relativa de energías renovables'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
+      },
+      tooltip: {
+        pointFormat: '<b>{point.percentage:.1f}%</b> ({point.y} TWh)'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          depth: 45,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.percentage:.1f} %'
+          }
+        }
+      },
+      series: [{
+        name: 'Energía Renovable',
+        data: [
+          ['Suecia', 60],
+          ['Noruega', 55],
+          ['Finlandia', 50],
+          ['Alemania', 35],
+          ['España', 40],
+          ['Francia', 30],
+          ['Italia', 28]
+        ]
+      }]
+    });
+
+
+    //Uso de Energías Renovables en Europa
+    const ctx3 = document.getElementById('stackedChart').getContext('2d');
+
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: ['Alemania', 'España', 'Francia', 'Suecia', 'Italia'],
+        datasets: [
+          {
+            label: 'Solar',
+            data: [30, 50, 20, 10, 40],
+            backgroundColor: '#facc15'
+          },
+          {
+            label: 'Eólica',
+            data: [40, 20, 30, 50, 20],
+            backgroundColor: '#38bdf8'
+          },
+          {
+            label: 'Hidroeléctrica',
+            data: [20, 10, 40, 30, 30],
+            backgroundColor: '#4ade80'
+          },
+          {
+            label: 'Biomasa',
+            data: [10, 20, 10, 10, 10],
+            backgroundColor: '#a855f7'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Proporción de Uso de Energías Renovables por País (%)',
+            font: { size: 20 }
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        },
+        scales: {
+          x: {
+            stacked: true
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Porcentaje (%)'
+            }
+          }
+        }
+      }
+    });
+    //https://www.iberdrolaespana.com/sostenibilidad/energias-renovables#:~:text=a%C3%B1o%20de%202023-,Principales%20energ%C3%ADas%20renovables%20en%20Espa%C3%B1a,hidr%C3%A1ulica%20(13%2C6%25).
+    //https://chat.qwen.ai/c/guest
+    //https://app.netlify.com/
+
+  </script>
+
+    <!-- Script menú desplegable -->
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const submenu = document.getElementById("submenu");
+    btn.addEventListener("click", () => submenu.classList.toggle("hidden"));
+    document.addEventListener("click", function(e) {
+      if (!btn.contains(e.target) && !submenu.contains(e.target)) {
+        submenu.classList.add("hidden");
+      }
+    });
+  </script>
+
+</body>
+</html>
